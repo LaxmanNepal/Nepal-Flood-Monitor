@@ -1,9 +1,9 @@
 {
-  "schema_version": 5,
-  "checked_at": "2026-08-31T11:39:40.096532+00:00",
-  "source": "DHM via BIPAD realtime integration",
-  "source_url": "https://bipadportal.gov.np/api/v1/river/",
+  "schema_version": 6,
+  "checked_at": "2026-08-31T17:40:00.871053+00:00",
+  "source": "DHM via BIPAD",
+  "source_url": "https://bipadportal.gov.np/api/v1/river-stations/",
   "status": "LIVE",
-  "stations_found": 1000,
-  "message": "Loaded 1000 river stations from BIPAD's DHM-backed feed."
+  "stations_found": 281,
+  "message": "Loaded 281 validated river stations."
 }
