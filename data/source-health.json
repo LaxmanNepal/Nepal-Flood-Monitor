@@ -1,0 +1,9 @@
+{
+  "checked_at": null,
+  "source_url": "https://www.dhm.gov.np/hydrology/river-watch",
+  "status": "not_checked",
+  "method": null,
+  "stations_found": 0,
+  "discovered_urls": [],
+  "message": "GitHub Actions has not run the collector yet."
+}
