@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "source": "Department of Hydrology and Meteorology (DHM), Government of Nepal",
+  "updated_at": "initial",
+  "stations": [
+    {
+      "station_id": "406.4",
+      "name": "Modi Khola at Annapurna",
+      "district": "Narayani",
+      "basin": "Narayani",
+      "latitude": 28.508327,
+      "longitude": 83.905059,
+      "water_level": null,
+      "warning_level": null,
+      "danger_level": null,
+      "trend": "unknown",
+      "status": "normal"
+    }
+  ]
+}
