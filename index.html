@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#07111f">
+  <meta name="description" content="Nepal Flood Monitor — river water levels, warning and danger status. Data source: Department of Hydrology and Meteorology (DHM).">
+  <title>Nepal Flood Monitor</title>
+  <link rel="preconnect" href="https://unpkg.com">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIINfQ3A5X6wX5a6d7n4X8x5X2Q5Y0Y5Q5E=" crossorigin="">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <p class="eyebrow">🇳🇵 Nepal Hydrology</p>
+      <h1>Nepal Flood Monitor</h1>
+      <p class="subtitle">River conditions from official hydrological monitoring.</p>
+    </div>
+    <div class="updated" id="updated">Loading…</div>
+  </header>
+
+  <main class="app-shell">
+    <section class="stats" aria-label="Flood summary">
+      <article><span>Stations</span><strong id="stationCount">—</strong></article>
+      <article><span>Danger</span><strong id="dangerCount">—</strong></article>
+      <article><span>Warning</span><strong id="warningCount">—</strong></article>
+      <article><span>Rising</span><strong id="risingCount">—</strong></article>
+    </section>
+
+    <section class="controls">
+      <input id="search" type="search" placeholder="Search river, station or district…" autocomplete="off">
+      <select id="statusFilter" aria-label="Filter status">
+        <option value="all">All statuses</option>
+        <option value="danger">Danger</option>
+        <option value="warning">Warning</option>
+        <option value="normal">Normal</option>
+      </select>
+      <button id="locate" type="button">Locate me</button>
+    </section>
+
+    <section class="map-card">
+      <div id="map" aria-label="Interactive Nepal flood map"></div>
+      <div class="legend">
+        <span><i class="dot normal"></i>Normal</span>
+        <span><i class="dot warning"></i>Warning</span>
+        <span><i class="dot danger"></i>Danger</span>
+      </div>
+    </section>
+
+    <section class="stations-card">
+      <div class="section-heading">
+        <h2>Monitoring stations</h2>
+        <span id="resultCount"></span>
+      </div>
+      <div id="stationList" class="station-list"></div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Data source: Department of Hydrology and Meteorology (DHM). This site is an independent visualization and is not an official DHM service.</p>
+  </footer>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>
