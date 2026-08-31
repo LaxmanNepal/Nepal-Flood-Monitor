@@ -1,29 +1,10 @@
 [
-  {
-    "station_id": "406.4",
-    "name": "Modi Khola at Annapurna",
-    "district": "Narayani",
-    "basin": "Narayani",
-    "latitude": 28.508327,
-    "longitude": 83.905059,
-    "source_url": "https://dhm.gov.np/hydrology/hms-Single/876"
-  },
-  {
-    "station_id": "531.5",
-    "name": "Salinadi Sankhu Telemetry",
-    "district": "Bagmati",
-    "basin": "Bagmati",
-    "latitude": 27.74412,
-    "longitude": 85.47802,
-    "source_url": "https://dhm.gov.np/hydrology/hms-Single/5331"
-  },
-  {
-    "station_id": "645.5",
-    "name": "Tamakoshi at Gongar/Jagat",
-    "district": "Koshi",
-    "basin": "Koshi",
-    "latitude": 27.820186,
-    "longitude": 86.226,
-    "source_url": "https://dhm.gov.np/hydrology/hms-Single/120"
-  }
+  {"station_id":"406.4","name":"Modi Khola at Annapurna","district":"Narayani","basin":"Narayani","latitude":28.508327,"longitude":83.905059,"source_url":"https://dhm.gov.np/hydrology/hms-Single/876"},
+  {"station_id":"531.5","name":"Salinadi Sankhu Telemetry","district":"Bagmati","basin":"Bagmati","latitude":27.74412,"longitude":85.47802,"source_url":"https://dhm.gov.np/hydrology/hms-Single/5331"},
+  {"station_id":"645.5","name":"Tamakoshi at Gongar/Jagat","district":"Koshi","basin":"Koshi","latitude":27.820186,"longitude":86.226,"source_url":"https://dhm.gov.np/hydrology/hms-Single/120"},
+  {"station_id":"450","name":"Narayani at Devghat","district":"Narayani","basin":"Narayani","latitude":27.71,"longitude":84.43,"warning_level":7.3,"danger_level":9.0,"source_url":"https://dhm.gov.np/hydrology/hms-Single/265"},
+  {"station_id":"280","name":"Karnali at Chisapani","district":"Kailali","basin":"Karnali","latitude":28.65305556,"longitude":81.28694444,"warning_level":10.0,"danger_level":10.8,"source_url":"https://dhm.gov.np/hydrology/hms-Single/35"},
+  {"station_id":"795","name":"Kankai River at Mainachuli","district":"Ilam","basin":"Kankai","latitude":26.709853,"longitude":87.88055,"warning_level":3.8,"danger_level":4.3,"source_url":"https://dhm.gov.np/hydrology/hms-Single/238"},
+  {"station_id":"289.95","name":"Babai at Chepang","district":"Bardiya","basin":"Babai","latitude":28.3565601,"longitude":81.7135456,"warning_level":5.5,"danger_level":6.8,"source_url":"https://dhm.gov.np/hydrology/hms-Single/29"},
+  {"station_id":"178","name":"Mahakali at Parigaon","district":"Mahakali","basin":"Mahakali","latitude":29.1723,"longitude":80.2606,"warning_level":6.8,"danger_level":8.0,"source_url":"https://dhm.gov.np/hydrology/hms-Single/78"}
 ]
