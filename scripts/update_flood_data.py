@@ -1,251 +1,267 @@
 #!/usr/bin/env python3
-"""Collect DHM River Watch data and publish a validated static snapshot."""
+"""Build a validated Nepal river-status snapshot from public government feeds.
+
+Primary: BIPAD realtime river feed (which is synchronized from DHM).
+Secondary: DHM River Watch browser page.
+Tertiary: DHM realtime stream page.
+"""
 import json
 import re
 from datetime import datetime, timezone
+from html import unescape
 from pathlib import Path
+from urllib.error import HTTPError, URLError
 from urllib.request import Request, urlopen
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / "data"
 OUT = DATA / "flood-data.json"
 HEALTH = DATA / "source-health.json"
-RIVER_WATCH = "https://www.dhm.gov.np/hydrology/river-watch"
-STREAM = "https://www.dhm.gov.np/hydrology/realtime-stream"
+BIPAD_BASE = "https://bipadportal.gov.np/api/v1"
+BIPAD_REALTIME = "https://bipadportal.gov.np/realtime/"
+DHM_RIVER_WATCH = "https://www.dhm.gov.np/hydrology/river-watch"
+DHM_STREAM = "https://www.dhm.gov.np/hydrology/realtime-stream"
+UA = "Mozilla/5.0 (compatible; Nepal-Flood-Monitor/5.0; +https://github.com/LaxmanNepal/Nepal-Flood-Monitor)"
 
 
-def number(value):
-    m = re.search(r"-?\d+(?:\.\d+)?", str(value or ""))
+def clean(v):
+    return re.sub(r"\s+", " ", unescape(str(v or ""))).strip()
+
+
+def number(v):
+    if v is None or v == "":
+        return None
+    m = re.search(r"-?\d+(?:\.\d+)?", clean(v).replace(",", ""))
     return float(m.group()) if m else None
-
-
-def clean(value):
-    return re.sub(r"\s+", " ", str(value or "")).strip()
 
 
 def load_meta():
     try:
         raw = json.loads((DATA / "stations.json").read_text(encoding="utf-8"))
         items = raw.get("stations", raw) if isinstance(raw, (dict, list)) else []
-        return {clean(x.get("station_id")): x for x in items if x.get("station_id")}
+        return {clean(x.get("station_id")): x for x in items if isinstance(x, dict) and x.get("station_id")}
     except Exception:
         return {}
 
 
-def risk_from_status(status, water=None, warning=None, danger=None):
-    text = clean(status).lower()
-    if "danger" in text or (water is not None and danger is not None and water >= danger):
+def risk(status, water=None, warning=None, danger=None):
+    s = clean(status).lower()
+    if "danger" in s or (water is not None and danger is not None and water >= danger):
         return "critical"
-    if "warning" in text or (water is not None and warning is not None and water >= warning):
+    if "warning" in s or (water is not None and warning is not None and water >= warning):
         return "warning"
-    if "rising" in text:
+    if "rising" in s:
         return "watch"
-    if "offline" in text or "unavailable" in text:
+    if "offline" in s or "unavailable" in s:
         return "offline"
     return "normal"
 
 
-def table_rows(page):
-    """Extract every rendered table; prefer the table containing River Watch headers."""
-    tables = page.locator("table")
-    candidates = []
-    for i in range(tables.count()):
-        rows = tables.nth(i).locator("tr")
-        parsed = []
-        for r in range(rows.count()):
-            cells = rows.nth(r).locator("th,td")
-            vals = [clean(cells.nth(c).inner_text()) for c in range(cells.count())]
-            if vals:
-                parsed.append(vals)
-        if parsed:
-            candidates.append(parsed)
-    if not candidates:
-        return []
-    def score(rows):
-        h = " | ".join(x.lower() for x in rows[0])
-        return (100 if "station no" in h else 0) + (30 if "water level" in h else 0) + (30 if "warning level" in h else 0) + (30 if "danger level" in h else 0) + min(len(rows), 100) / 100
-    return max(candidates, key=score)
+def fetch_json(url):
+    req = Request(url, headers={"User-Agent": UA, "Accept": "application/json, text/plain, */*"})
+    with urlopen(req, timeout=45) as r:
+        return json.loads(r.read().decode("utf-8", "replace"))
 
 
-def extract_rows_with_playwright():
-    """Load the real page and capture both rendered HTML and JSON/XHR responses.
-
-    DHM currently renders River Watch client-side. The collector therefore does not
-    assume a permanent API URL: it records suitable JSON responses observed by the
-    browser and falls back to the rendered table when necessary.
-    """
-    from playwright.sync_api import sync_playwright
-    with sync_playwright() as p:
-        browser = p.chromium.launch(headless=True)
-        context = browser.new_context(viewport={"width": 1440, "height": 1200}, locale="en-US")
-        page = context.new_page()
-        captured = []
-
-        def on_response(response):
-            url = response.url.lower()
-            ctype = response.headers.get("content-type", "").lower()
-            if response.request.resource_type in {"xhr", "fetch"} or "json" in ctype:
-                if any(k in url for k in ("river", "hydro", "station", "watch", "api")):
-                    try:
-                        text = response.text()
-                        if len(text) < 5_000_000:
-                            captured.append((response.url, ctype, text))
-                    except Exception:
-                        pass
-
-        page.on("response", on_response)
-        page.goto(RIVER_WATCH, wait_until="domcontentloaded", timeout=90000)
-        try:
-            page.get_by_text("Tabular View", exact=True).click(timeout=7000)
-        except Exception:
-            pass
-        # Wait for actual data rows, not merely the page shell.
-        try:
-            page.wait_for_function("""() => [...document.querySelectorAll('table tr')].some(r => r.querySelectorAll('td').length >= 7)""", timeout=30000)
-        except Exception:
-            page.wait_for_timeout(10000)
-
-        rows = table_rows(page)
-        browser.close()
-        return rows, captured
+def recursive_records(obj):
+    """Yield dicts that look like station observations from arbitrary API envelopes."""
+    if isinstance(obj, dict):
+        yield obj
+        for value in obj.values():
+            yield from recursive_records(value)
+    elif isinstance(obj, list):
+        for value in obj:
+            yield from recursive_records(value)
 
 
-def json_rows(captured):
-    """Best-effort extraction from captured JSON without depending on undocumented keys."""
-    for url, ctype, text in captured:
-        if not text.lstrip().startswith(("{", "[")):
-            continue
-        try:
-            obj = json.loads(text)
-        except Exception:
-            continue
-        stack = [obj]
-        while stack:
-            cur = stack.pop()
-            if isinstance(cur, dict):
-                values = list(cur.values())
-                stack.extend(values)
-                if len(cur) >= 5:
-                    keys = {re.sub(r"[^a-z]", "", str(k).lower()) for k in cur}
-                    if any("station" in k for k in keys) and any("water" in k or "level" in k for k in keys):
-                        return obj, url
-            elif isinstance(cur, list):
-                stack.extend(cur[:1000])
-    return None, None
-
-
-def normalize_rows(rows, meta):
-    if not rows:
-        return []
-    header = [clean(x).lower() for x in rows[0]]
-    def col(*names):
-        for name in names:
-            for i, value in enumerate(header):
-                if name in value:
-                    return i
+def field(d, *names):
+    if not isinstance(d, dict):
         return None
-    station_i = col("station no", "station number", "station index")
-    basin_i = col("basin name", "basin")
-    name_i = col("station name")
-    district_i = col("district name", "district")
-    water_i = col("water level", "water lvl")
-    warning_i = col("warning level")
-    danger_i = col("danger level")
-    trend_i = col("trend")
-    status_i = col("status")
-    required = [station_i, name_i, water_i, warning_i, danger_i, trend_i, status_i]
-    if any(i is None for i in required):
-        raise RuntimeError(f"DHM River Watch schema changed. Header: {rows[0]}")
+    norm = {re.sub(r"[^a-z0-9]", "", str(k).lower()): v for k, v in d.items()}
+    for name in names:
+        key = re.sub(r"[^a-z0-9]", "", name.lower())
+        if key in norm:
+            return norm[key]
+    # tolerate nested/common naming variations
+    for k, v in norm.items():
+        for name in names:
+            n = re.sub(r"[^a-z0-9]", "", name.lower())
+            if n in k or k in n:
+                return v
+    return None
 
-    result, seen = [], set()
-    for cells in rows[1:]:
-        if max(i for i in required if i is not None) >= len(cells):
+
+def normalize_json(obj, meta, source):
+    records = []
+    for d in recursive_records(obj):
+        station = field(d, "station_name", "stationName", "station", "title", "name")
+        water = field(d, "water_level", "waterLevel", "water level", "current_water_level", "level")
+        status = field(d, "status", "river_status", "riverStatus")
+        basin = field(d, "basin", "basin_name", "basinName")
+        station_id = field(d, "station_id", "stationId", "station_index", "stationIndex", "series_id", "seriesId", "id")
+        # A useful observation normally has at least a station name plus water/status.
+        if not station or (water is None and status is None):
             continue
-        station_id = clean(cells[station_i])
-        name = clean(cells[name_i])
-        if not name or name.lower() in {"station name", "loading data..."}:
-            continue
-        key = station_id or f"name:{name.lower()}"
-        if key in seen:
-            continue
-        seen.add(key)
-        water, warning, danger = number(cells[water_i]), number(cells[warning_i]), number(cells[danger_i])
-        status = clean(cells[status_i]) or ("Offline" if water is None else "Below Warning Level and Steady")
+        station_id = clean(station_id)
         extra = meta.get(station_id, {})
-        result.append({
-            "station_id": station_id or key,
-            "name": name,
-            "basin": clean(cells[basin_i]) if basin_i is not None and basin_i < len(cells) else extra.get("basin"),
-            "district": clean(cells[district_i]) if district_i is not None and district_i < len(cells) else extra.get("district"),
-            "water_level": water,
-            "warning_level": warning,
-            "danger_level": danger,
-            "trend": clean(cells[trend_i]),
-            "status": status,
-            "risk_level": risk_from_status(status, water, warning, danger),
-            "latitude": extra.get("latitude"),
-            "longitude": extra.get("longitude"),
-            "source": "DHM River Watch"
+        warning = number(field(d, "warning_level", "warningLevel", "warning"))
+        danger = number(field(d, "danger_level", "dangerLevel", "danger"))
+        water_n = number(water)
+        status_s = clean(status) or ("Observed" if water_n is not None else "Offline")
+        lat = number(field(d, "latitude", "lat"))
+        lon = number(field(d, "longitude", "lon", "lng"))
+        records.append({
+            "station_id": station_id or clean(extra.get("station_id")) or f"name:{clean(station).lower()}",
+            "name": clean(station),
+            "basin": clean(basin) or clean(extra.get("basin")),
+            "district": clean(field(d, "district", "district_name", "districtName")) or clean(extra.get("district")),
+            "water_level": water_n,
+            "warning_level": warning if warning is not None else extra.get("warning_level"),
+            "danger_level": danger if danger is not None else extra.get("danger_level"),
+            "trend": clean(field(d, "trend", "steady", "water_trend", "waterTrend")) or "Unknown",
+            "status": status_s,
+            "risk_level": risk(status_s, water_n, warning, danger),
+            "latitude": lat if lat is not None else extra.get("latitude"),
+            "longitude": lon if lon is not None else extra.get("longitude"),
+            "source": source,
         })
-    return result
+    unique = {}
+    for r in records:
+        unique[r["station_id"]] = r
+    return list(unique.values())
 
 
-def write_health(status, now, message, count=0, source_url=RIVER_WATCH):
-    HEALTH.write_text(json.dumps({"schema_version": 4, "checked_at": now, "source": "Department of Hydrology and Meteorology (DHM), Government of Nepal", "source_url": source_url, "status": status, "stations_found": count, "message": message}, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+def bipad_fetch(meta):
+    """Try the public BIPAD river endpoints. BIPAD documents DHM as its river source."""
+    urls = [
+        f"{BIPAD_BASE}/river/",
+        f"{BIPAD_BASE}/river-stations/",
+        f"{BIPAD_BASE}/flood-station/",
+    ]
+    errors = []
+    best = []
+    for url in urls:
+        try:
+            obj = fetch_json(url)
+            rows = normalize_json(obj, meta, "BIPAD/DHM")
+            if len(rows) > len(best):
+                best = rows
+            if len(rows) >= 20:
+                return rows, url
+        except Exception as e:
+            errors.append(f"{url}: {e}")
+    raise RuntimeError("BIPAD returned no usable river dataset: " + " | ".join(errors))
 
 
-def stream_fallback(meta):
-    req = Request(STREAM, headers={"User-Agent": "Mozilla/5.0 (Nepal-Flood-Monitor/4.0)"})
-    with urlopen(req, timeout=60) as response:
-        html = response.read().decode("utf-8", "replace")
+def html_tables(html):
     tables = re.findall(r"<table[^>]*>(.*?)</table>", html, re.I | re.S)
+    all_rows = []
     for table in tables:
         rows = []
         for raw in re.findall(r"<tr[^>]*>(.*?)</tr>", table, re.I | re.S):
             cells = [clean(re.sub(r"<[^>]+>", " ", x)) for x in re.findall(r"<(?:td|th)[^>]*>(.*?)</(?:td|th)>", raw, re.I | re.S)]
-            if cells: rows.append(cells)
-        if rows and any("station" in x.lower() for x in rows[0]) and any("water" in x.lower() for x in rows[0]):
-            h = [x.lower() for x in rows[0]]
-            def col(*names):
-                for n in names:
-                    for i, v in enumerate(h):
-                        if n in v: return i
-                return None
-            si, ni, wi = col("station index", "station no", "station"), col("station name", "name"), col("water lvl", "water level", "water")
-            if None in (si, ni, wi): continue
-            out=[]
-            for c in rows[1:]:
-                if max(si,ni,wi)>=len(c) or not c[ni]: continue
-                sid, water = c[si], number(c[wi]); extra=meta.get(sid,{})
-                out.append({"station_id":sid,"name":c[ni],"basin":extra.get("basin"),"district":extra.get("district"),"water_level":water,"warning_level":extra.get("warning_level"),"danger_level":extra.get("danger_level"),"trend":"Unknown","status":"Observed" if water is not None else "Offline","risk_level":risk_from_status("Observed",water,extra.get("warning_level"),extra.get("danger_level")),"latitude":extra.get("latitude"),"longitude":extra.get("longitude"),"source":"DHM Real Time Stream Flow"})
-            return out
-    return []
+            if cells:
+                rows.append(cells)
+        if rows:
+            all_rows.append(rows)
+    return all_rows
 
 
-def publish(stations, now, source_url, data_status, status_source):
-    OUT.write_text(json.dumps({"schema_version":5,"source":"Department of Hydrology and Meteorology (DHM), Government of Nepal","source_url":source_url,"updated_at":now,"data_status":data_status,"station_count":len(stations),"status_source":status_source,"stations":stations},ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+def normalize_table(rows, meta, source):
+    if not rows:
+        return []
+    header = [clean(x).lower() for x in rows[0]]
+    def col(*names):
+        for n in names:
+            for i, h in enumerate(header):
+                if n in h:
+                    return i
+        return None
+    si = col("station no", "station number", "station index")
+    bi = col("basin name", "basin")
+    ni = col("station name", "name")
+    di = col("district name", "district")
+    wi = col("water level", "water lvl", "water")
+    wni = col("warning level", "warning")
+    dgi = col("danger level", "danger")
+    ti = col("trend")
+    sti = col("status")
+    if None in (si, ni, wi):
+        return []
+    out = {}
+    for c in rows[1:]:
+        if max(si, ni, wi) >= len(c):
+            continue
+        name = clean(c[ni])
+        if not name or name.lower() == "loading data...":
+            continue
+        sid = clean(c[si]); extra = meta.get(sid, {})
+        water = number(c[wi])
+        warning = number(c[wni]) if wni is not None and wni < len(c) else extra.get("warning_level")
+        danger = number(c[dgi]) if dgi is not None and dgi < len(c) else extra.get("danger_level")
+        status = clean(c[sti]) if sti is not None and sti < len(c) else ("Observed" if water is not None else "Offline")
+        out[sid or f"name:{name.lower()}"] = {
+            "station_id": sid or f"name:{name.lower()}", "name": name,
+            "basin": clean(c[bi]) if bi is not None and bi < len(c) else extra.get("basin"),
+            "district": clean(c[di]) if di is not None and di < len(c) else extra.get("district"),
+            "water_level": water, "warning_level": warning, "danger_level": danger,
+            "trend": clean(c[ti]) if ti is not None and ti < len(c) else "Unknown",
+            "status": status, "risk_level": risk(status, water, warning, danger),
+            "latitude": extra.get("latitude"), "longitude": extra.get("longitude"), "source": source,
+        }
+    return list(out.values())
+
+
+def dhm_http_fallback(meta):
+    req = Request(DHM_STREAM, headers={"User-Agent": UA})
+    with urlopen(req, timeout=45) as r:
+        html = r.read().decode("utf-8", "replace")
+    best = []
+    for rows in html_tables(html):
+        got = normalize_table(rows, meta, "DHM Real Time Stream Flow")
+        if len(got) > len(best): best = got
+    if len(best) >= 20:
+        return best, DHM_STREAM
+    raise RuntimeError(f"DHM stream returned only {len(best)} usable rows")
+
+
+def publish(stations, now, source_url, status, status_source):
+    OUT.write_text(json.dumps({
+        "schema_version": 6, "source": "Department of Hydrology and Meteorology (DHM), Government of Nepal",
+        "source_url": source_url, "updated_at": now, "data_status": status,
+        "station_count": len(stations), "status_source": status_source, "stations": stations,
+    }, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+
+def health(status, now, message, count=0, url=BIPAD_REALTIME):
+    HEALTH.write_text(json.dumps({
+        "schema_version": 5, "checked_at": now,
+        "source": "DHM via BIPAD realtime integration",
+        "source_url": url, "status": status, "stations_found": count, "message": message,
+    }, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 
 def main():
-    now=datetime.now(timezone.utc).isoformat(); meta=load_meta()
+    now = datetime.now(timezone.utc).isoformat()
+    meta = load_meta()
     try:
-        rows,captured=extract_rows_with_playwright()
-        stations=normalize_rows(rows,meta)
-        if len(stations)<20:
-            raise RuntimeError(f"Only {len(stations)} River Watch rows validated; captured={len(captured)} network responses")
-        publish(stations,now,RIVER_WATCH,"LIVE","DHM River Watch")
-        write_health("LIVE",now,f"Parsed {len(stations)} complete River Watch stations.",len(stations))
-        print(json.dumps({"status":"LIVE","stations":len(stations)})); return
+        stations, url = bipad_fetch(meta)
+        publish(stations, now, url, "LIVE", "DHM via BIPAD")
+        health("LIVE", now, f"Loaded {len(stations)} river stations from BIPAD's DHM-backed feed.", len(stations), url)
+        print(f"LIVE: {len(stations)} river stations from {url}")
+        return
     except Exception as primary:
-        print(f"River Watch failed: {primary}")
-        try:
-            stations=stream_fallback(meta)
-            if len(stations)>=20:
-                publish(stations,now,STREAM,"LIVE_PARTIAL","DHM Real Time Stream Flow")
-                write_health("LIVE_PARTIAL",now,f"River Watch failed; parsed {len(stations)} stream-flow observations.",len(stations),STREAM); return
-            raise RuntimeError(f"only {len(stations)} stream rows")
-        except Exception as fallback:
-            write_health("STALE",now,f"River Watch: {primary}; stream fallback: {fallback}")
-            raise RuntimeError(f"DHM collection failed: {primary}; fallback: {fallback}")
+        print(f"BIPAD river feed failed: {primary}")
+    try:
+        stations, url = dhm_http_fallback(meta)
+        publish(stations, now, url, "LIVE_PARTIAL", "DHM Real Time Stream Flow")
+        health("LIVE_PARTIAL", now, f"BIPAD failed; loaded {len(stations)} DHM stream observations.", len(stations), url)
+        print(f"LIVE_PARTIAL: {len(stations)} river stations from {url}")
+        return
+    except Exception as fallback:
+        health("STALE", now, f"BIPAD: {primary}; DHM stream: {fallback}")
+        raise RuntimeError(f"All river feeds failed. BIPAD: {primary}; DHM: {fallback}")
 
-if __name__ == "__main__": main()
+
+if __name__ == "__main__":
+    main()
