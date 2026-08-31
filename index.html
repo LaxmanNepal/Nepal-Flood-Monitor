@@ -2,46 +2,30 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#07111f">
-  <meta name="description" content="Nepal Flood Monitor — river water levels, warning and danger status. Data source: Department of Hydrology and Meteorology (DHM).">
-  <title>Nepal Flood Monitor</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#f5f9fc">
+  <meta name="description" content="Nepal Flood Early Warning — river monitoring dashboard.">
+  <title>Nepal Flood Early Warning</title>
   <link rel="preconnect" href="https://unpkg.com">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 <body>
-  <header class="topbar">
-    <div>
-      <p class="eyebrow">🇳🇵 Nepal Hydrology</p>
-      <h1>Nepal Flood Monitor</h1>
-      <p class="subtitle">River conditions from official hydrological monitoring.</p>
-    </div>
-    <div class="updated" id="updated">Loading…</div>
-  </header>
   <main class="app-shell">
-    <section class="stats" aria-label="Flood summary">
-      <article><span>Stations</span><strong id="stationCount">—</strong></article>
-      <article><span>Danger</span><strong id="dangerCount">—</strong></article>
-      <article><span>Warning</span><strong id="warningCount">—</strong></article>
-      <article><span>Rising</span><strong id="risingCount">—</strong></article>
-    </section>
-    <section class="controls">
-      <input id="search" type="search" placeholder="Search river, station or district…" autocomplete="off">
-      <select id="statusFilter" aria-label="Filter status"><option value="all">All statuses</option><option value="danger">Danger</option><option value="warning">Warning</option><option value="normal">Normal</option></select>
-      <button id="locate" type="button">Locate me</button>
-    </section>
-    <section class="map-card">
-      <div id="map" aria-label="Interactive Nepal flood map"></div>
-      <div class="legend"><span><i class="dot normal"></i>Normal</span><span><i class="dot warning"></i>Warning</span><span><i class="dot danger"></i>Danger</span></div>
-    </section>
-    <section class="stations-card">
-      <div class="section-heading"><h2>Monitoring stations</h2><span id="resultCount"></span></div>
-      <div id="stationList" class="station-list"></div>
+    <header class="topbar">
+      <div class="brand"><div class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></div><div><h1>Nepal Flood Early Warning</h1><p><strong id="station-count">0</strong> stations monitored</p></div></div>
+      <div id="overall-status" class="status-pill normal"><i></i><span>0 Normal</span></div>
+    </header>
+    <section class="actionbar"><div class="language"><button class="active" data-lang="en">EN</button><button data-lang="np">NP</button></div><div class="updated">Last updated <strong id="last-updated">—</strong></div><button id="refresh" class="refresh" type="button">↻ Refresh</button><a class="operator" href="#" onclick="return false">Operator Login</a></section>
+    <section class="filters"><select id="basin-filter" aria-label="Filter by basin"><option value="">Filter by basin</option></select><label class="search"><span>⌕</span><input id="station-search" type="search" placeholder="Search station name..." autocomplete="off"></label></section>
+    <section class="map-wrap"><div id="map" aria-label="Nepal flood monitoring map"></div>
+      <div class="map-tools top-right"><div class="view-toggle"><button class="active" data-layer="base">Map</button><button data-layer="satellite">Satellite</button><button data-layer="rivers">Rivers</button></div><button id="locate" class="location-warning" type="button">⌖ <span id="location-text">Location access denied</span></button></div>
+      <div class="legend card"><div class="legend-title">RISK LEVEL</div><div class="legend-item"><i class="dot normal"></i>Normal <b id="legend-normal">0</b></div><div class="legend-item"><i class="dot watch"></i>Watch <b id="legend-watch">0</b></div><div class="legend-item"><i class="dot warning"></i>Warning <b id="legend-warning">0</b></div><div class="legend-item"><i class="dot critical"></i>Critical <b id="legend-critical">0</b></div><div class="legend-item"><i class="dot offline"></i>Offline <b id="legend-offline">0</b></div></div>
+      <button id="active-filter" class="filter-chip" type="button" hidden>Showing all stations <span>×</span></button>
     </section>
   </main>
-  <footer><p>Data source: Department of Hydrology and Meteorology (DHM). This site is an independent visualization and is not an official DHM service.</p></footer>
+  <div id="toast" class="toast" role="status"></div>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-  <script src="assets/js/app.js"></script>
+  <script src="./assets/js/app.js"></script>
 </body>
 </html>
