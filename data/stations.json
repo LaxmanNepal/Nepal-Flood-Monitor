@@ -1,0 +1,29 @@
+[
+  {
+    "station_id": "406.4",
+    "name": "Modi Khola at Annapurna",
+    "district": "Narayani",
+    "basin": "Narayani",
+    "latitude": 28.508327,
+    "longitude": 83.905059,
+    "source_url": "https://dhm.gov.np/hydrology/hms-Single/876"
+  },
+  {
+    "station_id": "531.5",
+    "name": "Salinadi Sankhu Telemetry",
+    "district": "Bagmati",
+    "basin": "Bagmati",
+    "latitude": 27.74412,
+    "longitude": 85.47802,
+    "source_url": "https://dhm.gov.np/hydrology/hms-Single/5331"
+  },
+  {
+    "station_id": "645.5",
+    "name": "Tamakoshi at Gongar/Jagat",
+    "district": "Koshi",
+    "basin": "Koshi",
+    "latitude": 27.820186,
+    "longitude": 86.226,
+    "source_url": "https://dhm.gov.np/hydrology/hms-Single/120"
+  }
+]
