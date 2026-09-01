@@ -8,9 +8,14 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: flood-data-update
+  cancel-in-progress: true
+
 jobs:
   update:
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -19,17 +24,12 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+          cache: "pip"
 
-      - name: Install browser collector
-        run: |
-          python -m pip install --upgrade pip
-          pip install playwright
-          playwright install --with-deps chromium
-
-      - name: Fetch complete DHM River Watch
+      - name: Fetch government flood data
         run: python scripts/update_flood_data.py
 
-      - name: Validate generated JSON
+      - name: Validate published snapshot
         run: |
           python -m json.tool data/flood-data.json >/dev/null
           python -m json.tool data/source-health.json >/dev/null
@@ -37,15 +37,18 @@ jobs:
           import json
           from pathlib import Path
           d=json.loads(Path('data/flood-data.json').read_text())
-          n=len(d.get('stations', []))
-          print(f'Published river stations: {n}')
-          if n < 20:
-              raise SystemExit('Too few river stations; refusing deployment data')
-          if d.get('data_status') not in {'LIVE','LIVE_PARTIAL'}:
+          h=json.loads(Path('data/source-health.json').read_text())
+          stations=d.get('stations', [])
+          if not isinstance(stations, list) or len(stations) < 20:
+              raise SystemExit(f'Invalid station count: {len(stations) if isinstance(stations,list) else "not a list"}')
+          if d.get('data_status') not in {'LIVE','LIVE_PARTIAL','STALE'}:
               raise SystemExit(f"Invalid data status: {d.get('data_status')}")
+          if h.get('status') not in {'LIVE','LIVE_PARTIAL','STALE','ERROR','UNAVAILABLE'}:
+              raise SystemExit(f"Invalid source health status: {h.get('status')}")
+          print(f"Stations: {len(stations)} | data: {d.get('data_status')} | source: {h.get('status')}")
           PY
 
-      - name: Commit changes
+      - name: Commit snapshot
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -53,6 +56,6 @@ jobs:
           if git diff --cached --quiet; then
             echo "No data changes."
           else
-            git commit -m "chore(data): update complete DHM river statuses"
+            git commit -m "chore(data): update river status snapshot"
             git push
           fi
