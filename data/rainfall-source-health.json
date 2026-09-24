@@ -1,1 +1,10 @@
-{"schema_version":1,"checked_at":null,"source":"DHM Rainfall Watch","source_url":"https://dhm.gov.np/hydrology/rainfall-watch-map","status":"UNAVAILABLE","stations_found":0,"stations_with_coordinates":0,"message":"Waiting for first scheduled rainfall update."}
+{
+  "schema_version": 1,
+  "checked_at": "2026-09-24T18:50:31.895751+00:00",
+  "source": "DHM Rainfall Watch",
+  "source_url": "https://dhm.gov.np/hydrology/rainfall-watch-map",
+  "status": "LIVE",
+  "stations_found": 1000,
+  "stations_with_coordinates": 0,
+  "message": "Loaded official accumulated rainfall observations."
+}
