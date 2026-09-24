@@ -53,7 +53,8 @@ def coord_from_page(url):
     return None
 
 def json_fetch(url,timeout=30):
-    raw=fetch(url,timeout)
+    req=Request(url,headers={"User-Agent":UA,"Accept":"application/json","X-Requested-With":"XMLHttpRequest"})
+    raw=urlopen(req,timeout=timeout).read().decode("utf-8","replace")
     return json.loads(raw)
 
 def records_from_json(obj):
