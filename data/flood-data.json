@@ -2,7 +2,7 @@
   "schema_version": 8,
   "source": "Department of Hydrology and Meteorology (DHM), Government of Nepal",
   "source_url": "https://bipadportal.gov.np/api/v1/river-stations/",
-  "updated_at": "2026-09-24T18:53:33.141451+00:00",
+  "updated_at": "2026-09-24T18:56:58.446473+00:00",
   "data_status": "LIVE",
   "station_count": 284,
   "status_source": "DHM via BIPAD",
