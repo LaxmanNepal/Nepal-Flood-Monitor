@@ -6,6 +6,8 @@ on:
     paths:
       - ".github/workflows/update-flood-data.yml"
       - "scripts/update_flood_data.py"
+      - "scripts/update_station_history.py"
+      - "scripts/update_rainfall_data.py"
       - "data/stations.json"
   schedule:
     - cron: "7,22,37,52 * * * *"
