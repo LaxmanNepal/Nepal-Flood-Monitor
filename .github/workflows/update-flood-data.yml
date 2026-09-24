@@ -66,7 +66,7 @@ jobs:
               raise SystemExit(f"Invalid source health status: {h.get('status')}")
           rh=json.loads(Path('data/rainfall-source-health.json').read_text())
           rd=json.loads(Path('data/rainfall-data.json').read_text())
-          if rd.get('data_status') not in {'LIVE','UNAVAILABLE'}:
+          if rd.get('data_status') not in {'LIVE','STALE','UNAVAILABLE'}:
               raise SystemExit(f"Invalid rainfall status: {rd.get('data_status')}")
           if rh.get('status') not in {'LIVE','UNAVAILABLE','STALE'}:
               raise SystemExit(f"Invalid rainfall source status: {rh.get('status')}")
