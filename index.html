@@ -19,4 +19,37 @@
 <section class="stations"><div class="section-head"><div><h2>River status</h2><p id="result-summary">All monitored stations</p></div><span class="source-badge">DHM River Watch</span></div><div id="station-list" class="station-list" aria-live="polite"></div></section>
 <section class="emergency-card" aria-label="Flood emergency information"><div><span class="emergency-kicker">FLOOD SAFETY</span><h2>Need official flood information?</h2><p>Nepal Flood Monitor is an independent visualization. For official flood early-warning information, verify conditions with DHM.</p></div><div class="emergency-actions"><a href="https://dhm.gov.np/hydrology/river-watch" target="_blank" rel="noopener">DHM River Watch ↗</a><a href="https://dhm.gov.np/" target="_blank" rel="noopener">DHM official site ↗</a><strong>1155 <small>Flood Early Warning</small></strong></div></section><section class="notice"><strong>Important:</strong> During an emergency, follow official DHM and local-authority instructions. This dashboard is not an official emergency-warning service.</section>
 <footer><span>Data source: Department of Hydrology and Meteorology, Government of Nepal</span><span>Emergency reference: DHM flood hotline 1155</span></footer>
-</div><div id="toast" class="toast" role="status" aria-live="polite"></div><script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script><script src="./assets/js/app.js?v=20260924d"></script><div id="rainfall-modal" class="station-modal" hidden><div class="station-modal-backdrop" data-close-rainfall></div><div class="station-modal-panel" role="dialog" aria-modal="true" aria-labelledby="rainfall-modal-title"><button class="modal-close" type="button" data-close-rainfall aria-label="Close">×</button><div id="rainfall-modal-content"></div></div></div></body></html>
+</div><div id="toast" class="toast" role="status" aria-live="polite"></div><script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script><script src="./assets/js/app.js?v=20260924d"></script>
+<script>
+(function(){
+  function esc(v){return String(v??'').replace(/[&<>"]/g,function(x){return({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'})[x]})}
+  function fallback(){
+    fetch('./data/flood-data.json?v=20260924',{cache:'no-store'}).then(function(r){
+      if(!r.ok)throw Error('HTTP '+r.status);
+      return r.json();
+    }).then(function(d){
+      var s=Array.isArray(d.stations)?d.stations:[];
+      var count=document.getElementById('station-count');
+      var total=document.getElementById('stat-total');
+      var list=document.getElementById('station-list');
+      var summary=document.getElementById('result-summary');
+      if(count)count.textContent=s.length;
+      if(total)total.textContent=s.length;
+      if(summary)summary.textContent='Showing '+s.length+' of '+s.length+' monitored stations';
+      if(!list)return;
+      var rank={critical:0,warning:1,watch:2,normal:3,offline:4};
+      s.sort(function(a,b){return (rank[String(a.risk_level||'normal').toLowerCase()]??3)-(rank[String(b.risk_level||'normal').toLowerCase()]??3)});
+      list.innerHTML=s.slice(0,120).map(function(x){
+        var r=String(x.risk_level||'normal').toLowerCase();
+        var w=Number(x.water_level);
+        var level=Number.isFinite(w)&&Math.abs(w)<90000?w.toFixed(2)+' m':'—';
+        return '<article class="station"><div><div class="station-name">'+esc(x.name)+'</div><div class="station-meta">'+esc(x.basin||'Unknown basin')+' · '+esc(x.district||'Unknown district')+' · #'+esc(x.station_id)+'</div></div><div class="station-level">'+level+'<small>water level</small></div><div class="station-bottom"><span>'+esc(x.status||'Unknown')+' · '+esc(x.trend||'—')+'</span><span class="risk '+esc(r)+'">'+r.toUpperCase()+'</span></div></article>';
+      }).join('');
+      var counts={normal:0,watch:0,warning:0,critical:0,offline:0};
+      s.forEach(function(x){var r=String(x.risk_level||'normal').toLowerCase();if(counts[r]!==undefined)counts[r]++});
+      Object.keys(counts).forEach(function(k){var e=document.getElementById('stat-'+k);if(e)e.textContent=counts[k]});
+    }).catch(function(e){console.error('Fallback flood data:',e)});
+  }
+  setTimeout(fallback,250);
+})();
+</script><div id="rainfall-modal" class="station-modal" hidden><div class="station-modal-backdrop" data-close-rainfall></div><div class="station-modal-panel" role="dialog" aria-modal="true" aria-labelledby="rainfall-modal-title"><button class="modal-close" type="button" data-close-rainfall aria-label="Close">×</button><div id="rainfall-modal-content"></div></div></div></body></html>
