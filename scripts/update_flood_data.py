@@ -15,6 +15,21 @@ def number(v):
     if v is None or v=="": return None
     m=re.search(r"-?\d+(?:\.\d+)?",clean(v).replace(",","")); return float(m.group()) if m else None
 
+def load_geo_meta():
+    """Load BIPAD province/district labels so station filters are human-readable."""
+    provinces={}; districts={}
+    for endpoint,target in (("province/",provinces),("district/",districts)):
+        try:
+            obj=fetch_json(f"{BIPAD_BASE}/{endpoint}")
+            for row in candidates(obj):
+                if not isinstance(row,dict): continue
+                rid=clean(field(row,"id","pk","code"))
+                name=clean(field(row,"name","title","province_name","district_name"))
+                if rid and name: target[rid]=name
+        except Exception:
+            pass
+    return provinces,districts
+
 def load_meta():
     try:
         raw=json.loads((DATA/"stations.json").read_text(encoding="utf-8")); items=raw.get("stations",raw) if isinstance(raw,(dict,list)) else []
@@ -118,8 +133,8 @@ def valid_name(v):
     if re.fullmatch(r"[-+]?\d+(?:\.\d+)?",s):return False
     return bool(re.search(r"[A-Za-z\u0900-\u097F]",s))
 
-def normalize(obj,meta,source,locations=None):
-    locations=locations or {}; rows=candidates(obj); out={}
+def normalize(obj,meta,source,locations=None,geo=None):
+    locations=locations or {}; provinces,districts=(geo or ({},{})); rows=candidates(obj); out={}
     for d in rows:
         if not isinstance(d,dict):continue
         name=field(d,"station_name","stationName","station","title","name")
@@ -138,15 +153,19 @@ def normalize(obj,meta,source,locations=None):
         if lat is not None and not 26<=lat<=31:lat=None
         if lon is not None and not 80<=lon<=89:lon=None
         key=sid or f"name:{clean(name).lower()}"
-        out[key]={"station_id":sid or key,"name":clean(name),"basin":clean(field(d,"basin","basin_name","basinName")) or clean(extra.get("basin")),"district":clean(field(d,"district","district_name","districtName")) or clean(extra.get("district")),"water_level":wl,"warning_level":wn if wn is not None else extra.get("warning_level"),"danger_level":dn if dn is not None else extra.get("danger_level"),"trend":clean(field(d,"trend","water_trend","waterTrend")) or "Unknown","status":st,"risk_level":risk(st,wl,wn,dn),"latitude":lat if lat is not None else extra.get("latitude") if extra.get("latitude") is not None else loc.get("latitude"),"longitude":lon if lon is not None else extra.get("longitude") if extra.get("longitude") is not None else loc.get("longitude"),"source":source}
+        out[key]={"station_id":sid or key,"name":clean(name),"basin":clean(field(d,"basin","basin_name","basinName")) or clean(extra.get("basin")),"district":clean(field(d,"district","district_name","districtName")) or clean(extra.get("district")),"province":clean(field(d,"province","province_name","provinceName")) or clean(extra.get("province")),"water_level":wl,"warning_level":wn if wn is not None else extra.get("warning_level"),"danger_level":dn if dn is not None else extra.get("danger_level"),"trend":clean(field(d,"trend","water_trend","waterTrend")) or "Unknown","status":st,"risk_level":risk(st,wl,wn,dn),"latitude":lat if lat is not None else extra.get("latitude") if extra.get("latitude") is not None else loc.get("latitude"),"longitude":lon if lon is not None else extra.get("longitude") if extra.get("longitude") is not None else loc.get("longitude"),"source":source}
+    for row in out.values():
+        did=clean(row.get("district")); pid=clean(row.get("province"))
+        row["district_id"]=did; row["district"]=districts.get(did,did)
+        row["province_id"]=pid; row["province"]=provinces.get(pid,pid)
     return list(out.values())
 
-def bipad(meta,locations):
+def bipad(meta,locations,geo):
     errors=[]; best=[]
     for endpoint in ("river/","river-stations/","flood-station/","river-trimed/"):
         url=f"{BIPAD_BASE}/{endpoint}"
         try:
-            rows=normalize(fetch_json(url),meta,"BIPAD/DHM",locations)
+            rows=normalize(fetch_json(url),meta,"BIPAD/DHM",locations,geo)
             if len(rows)>len(best):best=rows
             if 20<=len(rows)<=500:return rows,url
         except Exception as e:errors.append(f"{endpoint}: {e}")
@@ -183,15 +202,15 @@ def dhm(meta):
     raise RuntimeError(f"DHM returned only {len(best)} valid rows")
 
 def write(stations,now,url,status,source):
-    OUT.write_text(json.dumps({"schema_version":7,"source":"Department of Hydrology and Meteorology (DHM), Government of Nepal","source_url":url,"updated_at":now,"data_status":status,"station_count":len(stations),"status_source":source,"stations":stations},ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+    OUT.write_text(json.dumps({"schema_version":8,"source":"Department of Hydrology and Meteorology (DHM), Government of Nepal","source_url":url,"updated_at":now,"data_status":status,"station_count":len(stations),"status_source":source,"stations":stations},ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
 
 def health(status,now,msg,count=0,url=""):
     HEALTH.write_text(json.dumps({"schema_version":6,"checked_at":now,"source":"DHM via BIPAD","source_url":url,"status":status,"stations_found":count,"message":msg},ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
 
 def main():
-    now=datetime.now(timezone.utc).isoformat(); meta=load_meta(); locations=load_station_locations()
+    now=datetime.now(timezone.utc).isoformat(); meta=load_meta(); locations=load_station_locations(); geo=load_geo_meta()
     try:
-        rows,url=bipad(meta,locations); write(rows,now,url,"LIVE","DHM via BIPAD"); health("LIVE",now,f"Loaded {len(rows)} validated river stations.",len(rows),url); print(f"LIVE: {len(rows)} validated river stations"); return
+        rows,url=bipad(meta,locations,geo); write(rows,now,url,"LIVE","DHM via BIPAD"); health("LIVE",now,f"Loaded {len(rows)} validated river stations.",len(rows),url); print(f"LIVE: {len(rows)} validated river stations"); return
     except Exception as e: print(f"BIPAD failed: {e}")
     try:
         rows,url=dhm(meta); write(rows,now,url,"LIVE_PARTIAL","DHM River Watch/Stream"); health("LIVE_PARTIAL",now,f"Loaded {len(rows)} validated DHM stations.",len(rows),url); print(f"LIVE_PARTIAL: {len(rows)} validated DHM stations"); return
