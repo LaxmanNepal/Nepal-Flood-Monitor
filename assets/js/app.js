@@ -6,7 +6,17 @@ const rivers=L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{y}/{x}.png',{m
 const $=id=>document.getElementById(id);const el={search:$('station-search'),basin:$('basin-filter'),risk:$('risk-filter'),list:$('station-list'),summary:$('result-summary'),count:$('station-count'),updated:$('last-updated'),freshness:$('freshness'),label:$('live-label'),refresh:$('refresh'),locate:$('locate'),location:$('location-text'),toast:$('toast')};
 const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));const num=v=>{const n=Number(v);return Number.isFinite(n)&&Math.abs(n)<90000?n:null};
 const translations={en:{lastUpdated:'Last updated',refresh:'Refresh',locate:'Locate me',search:'Search river or station…',allBasins:'All basins',allRisks:'All risk levels'},np:{lastUpdated:'अन्तिम अपडेट',refresh:'रिफ्रेस',locate:'मेरो स्थान',search:'नदी वा स्टेशन खोज्नुहोस्…',allBasins:'सबै बेसिन',allRisks:'सबै जोखिम स्तर'}};
-function risk(s){const e=String(s?.risk_level||'').toLowerCase().trim();if(['critical','warning','watch','normal','offline'].includes(e))return e;const t=String(s?.status||'').toLowerCase();if(t.includes('offline')||t.includes('unavailable'))return'offline';if(t.includes('danger')||t.includes('critical'))return'critical';if(t.includes('warning'))return'warning';if(t.includes('rising')||t.includes('watch'))return'watch';return'normal'}
+function risk(s){
+const explicit=String(s?.risk_level||'').toLowerCase().trim();
+if(['critical','warning','watch','normal','offline'].includes(explicit))return explicit;
+const water=num(s?.water_level),warning=num(s?.warning_level),danger=num(s?.danger_level),t=String(s?.status||'').toLowerCase();
+if(t.includes('offline')||t.includes('unavailable'))return 'offline';
+if(water!==null&&danger!==null&&water>=danger)return 'critical';
+if(water!==null&&warning!==null&&water>=warning)return 'warning';
+if(t.includes('above danger'))return 'critical';
+if(t.includes('above warning'))return 'warning';
+if(t.includes('rising'))return 'watch';
+return 'normal'}
 function level(v){const n=num(v);return n===null?'—':`${n.toFixed(2)} m`}
 function icon(r){const c={normal:'#20a968',watch:'#d99b1d',warning:'#eb7b32',critical:'#df4b56',offline:'#9ba7af'}[r]||'#1689b5';return L.divIcon({className:'station-marker',html:`<div style="--marker:${c}"></div>`,iconSize:[18,18],iconAnchor:[9,9]})}
 function popup(s){const r=risk(s);const source=s.source_url?`<br><a href="${esc(s.source_url)}" target="_blank" rel="noopener">DHM station source</a>`:'';return`<div class="popup"><b>${esc(s.name)}</b><br><small>${esc(s.basin||'Unknown basin')} · ${esc(s.district||'Unknown district')}</small><hr><b>${level(s.water_level)}</b> water level<br>Warning ${level(s.warning_level)} · Danger ${level(s.danger_level)}<br><strong>${esc(s.status||r.toUpperCase())}</strong><br><small>Trend: ${esc(s.trend||'—')} · Risk: ${r.toUpperCase()}</small>${source}</div>`}
