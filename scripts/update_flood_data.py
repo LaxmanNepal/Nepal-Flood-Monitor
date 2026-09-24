@@ -43,6 +43,45 @@ def risk(status,water=None,warning=None,danger=None):
 def fetch_json(url):
     r=urlopen(Request(url,headers={"User-Agent":UA,"Accept":"application/json"}),timeout=45); return json.loads(r.read().decode("utf-8","replace"))
 
+def coordinate_pair(v):
+    """Extract a WGS84 coordinate pair from common GeoJSON/BIPAD shapes."""
+    if isinstance(v,(list,tuple)) and len(v)>=2:
+        a,b=number(v[0]),number(v[1])
+        if a is not None and b is not None and 80<=a<=89 and 26<=b<=31:return b,a
+    if isinstance(v,dict):
+        for key in ("coordinates","coord","point","location","geometry"):
+            if key in v:
+                p=coordinate_pair(v[key])
+                if p:return p
+        lat=number(field(v,"latitude","lat","y")); lon=number(field(v,"longitude","lon","lng","x"))
+        if lat is not None and lon is not None and 26<=lat<=31 and 80<=lon<=89:return lat,lon
+    return None
+
+def load_station_locations():
+    registry={}
+    try:
+        obj=fetch_json(f"{BIPAD_BASE}/station-location/")
+        for row in candidates(obj):
+            if not isinstance(row,dict):continue
+            pair=coordinate_pair(row)
+            if not pair:continue
+            name=clean(field(row,"station_name","stationName","station","title","name"))
+            sid=clean(field(row,"station_id","stationId","series_id","seriesId","station_index","stationIndex","id"))
+            if sid:registry[f"id:{sid}"]={"latitude":pair[0],"longitude":pair[1],"name":name}
+            if name:registry[f"name:{name.lower()}"]={"latitude":pair[0],"longitude":pair[1],"name":name}
+    except Exception:
+        pass
+    return registry
+
+def location_for(registry,sid,name):
+    if sid and f"id:{sid}" in registry:return registry[f"id:{sid}"]
+    n=clean(name).lower()
+    if n and f"name:{n}" in registry:return registry[f"name:{n}"]
+    for v in registry.values():
+        vn=clean(v.get("name")).lower()
+        if vn and n and (vn in n or n in vn):return v
+    return {}
+
 def field(d,*names):
     if not isinstance(d,dict):return None
     norm={re.sub(r"[^a-z0-9]","",str(k).lower()):v for k,v in d.items()}
@@ -69,8 +108,8 @@ def valid_name(v):
     if re.fullmatch(r"[-+]?\d+(?:\.\d+)?",s):return False
     return bool(re.search(r"[A-Za-z\u0900-\u097F]",s))
 
-def normalize(obj,meta,source):
-    rows=candidates(obj); out={}
+def normalize(obj,meta,source,locations=None):
+    locations=locations or {}; rows=candidates(obj); out={}
     for d in rows:
         if not isinstance(d,dict):continue
         name=field(d,"station_name","stationName","station","title","name")
@@ -79,6 +118,7 @@ def normalize(obj,meta,source):
         if not valid_name(name) or (water is None and status is None):continue
         sid=clean(field(d,"station_id","stationId","station_index","stationIndex","series_id","seriesId","id"))
         extra=station_meta(meta,sid,name)
+        loc=location_for(locations,sid,name)
         wn=number(field(d,"warning_level","warningLevel","warning")); dn=number(field(d,"danger_level","dangerLevel","danger")); wl=number(water)
         st=clean(status) or ("Observed" if wl is not None else "Offline")
         lat=number(field(d,"latitude","lat")); lon=number(field(d,"longitude","lon","lng"))
@@ -86,15 +126,15 @@ def normalize(obj,meta,source):
         if lat is not None and not 26<=lat<=31:lat=None
         if lon is not None and not 80<=lon<=89:lon=None
         key=sid or f"name:{clean(name).lower()}"
-        out[key]={"station_id":sid or key,"name":clean(name),"basin":clean(field(d,"basin","basin_name","basinName")) or clean(extra.get("basin")),"district":clean(field(d,"district","district_name","districtName")) or clean(extra.get("district")),"water_level":wl,"warning_level":wn if wn is not None else extra.get("warning_level"),"danger_level":dn if dn is not None else extra.get("danger_level"),"trend":clean(field(d,"trend","water_trend","waterTrend")) or "Unknown","status":st,"risk_level":risk(st,wl,wn,dn),"latitude":lat if lat is not None else extra.get("latitude"),"longitude":lon if lon is not None else extra.get("longitude"),"source":source}
+        out[key]={"station_id":sid or key,"name":clean(name),"basin":clean(field(d,"basin","basin_name","basinName")) or clean(extra.get("basin")),"district":clean(field(d,"district","district_name","districtName")) or clean(extra.get("district")),"water_level":wl,"warning_level":wn if wn is not None else extra.get("warning_level"),"danger_level":dn if dn is not None else extra.get("danger_level"),"trend":clean(field(d,"trend","water_trend","waterTrend")) or "Unknown","status":st,"risk_level":risk(st,wl,wn,dn),"latitude":lat if lat is not None else extra.get("latitude") if extra.get("latitude") is not None else loc.get("latitude"),"longitude":lon if lon is not None else extra.get("longitude") if extra.get("longitude") is not None else loc.get("longitude"),"source":source}
     return list(out.values())
 
-def bipad(meta):
+def bipad(meta,locations):
     errors=[]; best=[]
     for endpoint in ("river/","river-stations/","flood-station/","river-trimed/"):
         url=f"{BIPAD_BASE}/{endpoint}"
         try:
-            rows=normalize(fetch_json(url),meta,"BIPAD/DHM")
+            rows=normalize(fetch_json(url),meta,"BIPAD/DHM",locations)
             if len(rows)>len(best):best=rows
             if 20<=len(rows)<=500:return rows,url
         except Exception as e:errors.append(f"{endpoint}: {e}")
@@ -137,9 +177,9 @@ def health(status,now,msg,count=0,url=""):
     HEALTH.write_text(json.dumps({"schema_version":6,"checked_at":now,"source":"DHM via BIPAD","source_url":url,"status":status,"stations_found":count,"message":msg},ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
 
 def main():
-    now=datetime.now(timezone.utc).isoformat(); meta=load_meta()
+    now=datetime.now(timezone.utc).isoformat(); meta=load_meta(); locations=load_station_locations()
     try:
-        rows,url=bipad(meta); write(rows,now,url,"LIVE","DHM via BIPAD"); health("LIVE",now,f"Loaded {len(rows)} validated river stations.",len(rows),url); print(f"LIVE: {len(rows)} validated river stations"); return
+        rows,url=bipad(meta,locations); write(rows,now,url,"LIVE","DHM via BIPAD"); health("LIVE",now,f"Loaded {len(rows)} validated river stations.",len(rows),url); print(f"LIVE: {len(rows)} validated river stations"); return
     except Exception as e: print(f"BIPAD failed: {e}")
     try:
         rows,url=dhm(meta); write(rows,now,url,"LIVE_PARTIAL","DHM River Watch/Stream"); health("LIVE_PARTIAL",now,f"Loaded {len(rows)} validated DHM stations.",len(rows),url); print(f"LIVE_PARTIAL: {len(rows)} validated DHM stations"); return
