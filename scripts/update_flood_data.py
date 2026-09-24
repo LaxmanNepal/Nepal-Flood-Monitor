@@ -44,12 +44,22 @@ def fetch_json(url):
     r=urlopen(Request(url,headers={"User-Agent":UA,"Accept":"application/json"}),timeout=45); return json.loads(r.read().decode("utf-8","replace"))
 
 def coordinate_pair(v):
-    """Extract a WGS84 coordinate pair from common GeoJSON/BIPAD shapes."""
+    """Extract a WGS84 Nepal coordinate pair from common GeoJSON/BIPAD shapes."""
+    if isinstance(v,str):
+        raw=v.strip()
+        if raw.startswith("{") or raw.startswith("["):
+            try:return coordinate_pair(json.loads(raw))
+            except Exception:pass
+        nums=re.findall(r"-?\\d+(?:\\.\\d+)?",raw)
+        if len(nums)>=2:
+            return coordinate_pair([float(nums[0]),float(nums[1])])
     if isinstance(v,(list,tuple)) and len(v)>=2:
         a,b=number(v[0]),number(v[1])
-        if a is not None and b is not None and 80<=a<=89 and 26<=b<=31:return b,a
+        if a is not None and b is not None:
+            if 80<=a<=89 and 26<=b<=31:return b,a
+            if 26<=a<=31 and 80<=b<=89:return a,b
     if isinstance(v,dict):
-        for key in ("coordinates","coord","point","location","geometry"):
+        for key in ("coordinates","coord","point","location","geometry","geo_point","geoPoint","geopoint","geo_location","geoLocation"):
             if key in v:
                 p=coordinate_pair(v[key])
                 if p:return p
@@ -121,7 +131,9 @@ def normalize(obj,meta,source,locations=None):
         loc=location_for(locations,sid,name)
         wn=number(field(d,"warning_level","warningLevel","warning")); dn=number(field(d,"danger_level","dangerLevel","danger")); wl=number(water)
         st=clean(status) or ("Observed" if wl is not None else "Offline")
-        lat=number(field(d,"latitude","lat")); lon=number(field(d,"longitude","lon","lng"))
+        pair=coordinate_pair(d)
+        lat=pair[0] if pair else number(field(d,"latitude","lat"))
+        lon=pair[1] if pair else number(field(d,"longitude","lon","lng"))
         # Reject impossible geographic values and obvious metadata leakage.
         if lat is not None and not 26<=lat<=31:lat=None
         if lon is not None and not 80<=lon<=89:lon=None
