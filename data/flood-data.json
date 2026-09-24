@@ -2,7 +2,7 @@
   "schema_version": 7,
   "source": "Department of Hydrology and Meteorology (DHM), Government of Nepal",
   "source_url": "https://bipadportal.gov.np/api/v1/river-stations/",
-  "updated_at": "2026-09-24T13:20:55.096826+00:00",
+  "updated_at": "2026-09-24T13:26:58.345258+00:00",
   "data_status": "LIVE",
   "station_count": 284,
   "status_source": "DHM via BIPAD",
@@ -18,8 +18,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 27.025129,
+      "longitude": 85.043521,
       "source": "BIPAD/DHM"
     },
     {
@@ -33,8 +33,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 27.225,
+      "longitude": 85.5091,
       "source": "BIPAD/DHM"
     },
     {
@@ -48,8 +48,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 28.203,
+      "longitude": 83.67065,
       "source": "BIPAD/DHM"
     },
     {
@@ -63,8 +63,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 28.8886706,
+      "longitude": 80.3954179,
       "source": "BIPAD/DHM"
     },
     {
@@ -78,8 +78,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 28.376,
+      "longitude": 83.567,
       "source": "BIPAD/DHM"
     },
     {
@@ -93,8 +93,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 27.947222,
+      "longitude": 82.225,
       "source": "BIPAD/DHM"
     },
     {
@@ -108,8 +108,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 28.076667,
+      "longitude": 82.798889,
       "source": "BIPAD/DHM"
     },
     {
@@ -123,8 +123,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 28.7599,
+      "longitude": 80.39376,
       "source": "BIPAD/DHM"
     },
     {
@@ -138,8 +138,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 27.503344,
+      "longitude": 84.278768,
       "source": "BIPAD/DHM"
     },
     {
@@ -153,8 +153,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 29.151,
+      "longitude": 81.5817,
       "source": "BIPAD/DHM"
     },
     {
@@ -168,8 +168,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 27.371,
+      "longitude": 85.47399,
       "source": "BIPAD/DHM"
     },
     {
@@ -183,8 +183,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 28.30388889,
+      "longitude": 81.82583333,
       "source": "BIPAD/DHM"
     },
     {
@@ -198,8 +198,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 27.499586,
+      "longitude": 83.2289809,
       "source": "BIPAD/DHM"
     },
     {
@@ -213,8 +213,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 27.631838,
+      "longitude": 85.293066,
       "source": "BIPAD/DHM"
     },
     {
@@ -228,8 +228,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 27.320958,
+      "longitude": 86.763448,
       "source": "BIPAD/DHM"
     },
     {
@@ -243,8 +243,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 28.007,
+      "longitude": 82.095,
       "source": "BIPAD/DHM"
     },
     {
@@ -258,8 +258,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 27.8333,
+      "longitude": 84.55,
       "source": "BIPAD/DHM"
     },
     {
@@ -273,8 +273,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 27.5763519,
+      "longitude": 83.0472644,
       "source": "BIPAD/DHM"
     },
     {
@@ -288,8 +288,8 @@
       "trend": "Unknown",
       "status": "ABOVE DANGER LEVEL",
       "risk_level": "critical",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 27.899686,
+      "longitude": 86.900661,
       "source": "BIPAD/DHM"
     },
     {
@@ -303,8 +303,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 26.626486,
+      "longitude": 86.726257,
       "source": "BIPAD/DHM"
     },
     {
@@ -318,8 +318,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 26.895948,
+      "longitude": 86.22266,
       "source": "BIPAD/DHM"
     },
     {
@@ -333,8 +333,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 28.93111111,
+      "longitude": 80.53194444,
       "source": "BIPAD/DHM"
     },
     {
@@ -348,8 +348,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 27.756831,
+      "longitude": 86.193569,
       "source": "BIPAD/DHM"
     },
     {
@@ -363,8 +363,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 28.098,
+      "longitude": 81.565,
       "source": "BIPAD/DHM"
     },
     {
@@ -378,8 +378,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 29.604,
+      "longitude": 81.759,
       "source": "BIPAD/DHM"
     },
     {
@@ -393,8 +393,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 28.7288083,
+      "longitude": 80.8212694,
       "source": "BIPAD/DHM"
     },
     {
@@ -408,8 +408,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 27.8286,
+      "longitude": 85.57694,
       "source": "BIPAD/DHM"
     },
     {
@@ -423,8 +423,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 29.1723,
+      "longitude": 80.2606,
       "source": "BIPAD/DHM"
     },
     {
@@ -438,8 +438,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 26.833324,
+      "longitude": 87.89934,
       "source": "BIPAD/DHM"
     },
     {
@@ -453,8 +453,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 28.501,
+      "longitude": 81.049,
       "source": "BIPAD/DHM"
     },
     {
@@ -468,8 +468,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 29.130931,
+      "longitude": 80.415089,
       "source": "BIPAD/DHM"
     },
     {
@@ -483,8 +483,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 28.216,
+      "longitude": 83.686,
       "source": "BIPAD/DHM"
     },
     {
@@ -498,8 +498,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 27.36,
+      "longitude": 85.47,
       "source": "BIPAD/DHM"
     },
     {
@@ -513,8 +513,8 @@
       "trend": "Unknown",
       "status": "ABOVE DANGER LEVEL",
       "risk_level": "critical",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 28.77008,
+      "longitude": 81.352052,
       "source": "BIPAD/DHM"
     },
     {
@@ -528,8 +528,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 27.644984,
+      "longitude": 85.706327,
       "source": "BIPAD/DHM"
     },
     {
@@ -543,8 +543,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 27.895069,
+      "longitude": 86.838542,
       "source": "BIPAD/DHM"
     },
     {
@@ -558,8 +558,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 27.8595819,
+      "longitude": 86.7959486,
       "source": "BIPAD/DHM"
     },
     {
@@ -573,8 +573,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 26.912863,
+      "longitude": 86.24833,
       "source": "BIPAD/DHM"
     },
     {
@@ -588,8 +588,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 27.166405,
+      "longitude": 85.90232,
       "source": "BIPAD/DHM"
     },
     {
@@ -603,8 +603,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 27.079444,
+      "longitude": 86.028333,
       "source": "BIPAD/DHM"
     },
     {
@@ -618,8 +618,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 27.07,
+      "longitude": 86.03,
       "source": "BIPAD/DHM"
     },
     {
@@ -633,8 +633,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 28.072732,
+      "longitude": 83.811066,
       "source": "BIPAD/DHM"
     },
     {
@@ -648,8 +648,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 27.695,
+      "longitude": 83.954,
       "source": "BIPAD/DHM"
     },
     {
@@ -663,8 +663,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 28.937728,
+      "longitude": 81.521359,
       "source": "BIPAD/DHM"
     },
     {
@@ -678,8 +678,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 28.66261,
+      "longitude": 81.02406,
       "source": "BIPAD/DHM"
     },
     {
@@ -693,8 +693,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 28.18888,
+      "longitude": 84.4236,
       "source": "BIPAD/DHM"
     },
     {
@@ -708,8 +708,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 26.98584,
+      "longitude": 85.231314,
       "source": "BIPAD/DHM"
     },
     {
@@ -723,8 +723,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 28.084454,
+      "longitude": 82.828611,
       "source": "BIPAD/DHM"
     },
     {
@@ -738,8 +738,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 27.154046,
+      "longitude": 85.000865,
       "source": "BIPAD/DHM"
     },
     {
@@ -753,8 +753,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 28.698414,
+      "longitude": 80.904985,
       "source": "BIPAD/DHM"
     },
     {
@@ -768,8 +768,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 27.576,
+      "longitude": 86.2,
       "source": "BIPAD/DHM"
     },
     {
@@ -783,8 +783,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 27.62023374,
+      "longitude": 85.344716,
       "source": "BIPAD/DHM"
     },
     {
@@ -798,8 +798,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 27.970405,
+      "longitude": 84.266532,
       "source": "BIPAD/DHM"
     },
     {
@@ -813,8 +813,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 29.796,
+      "longitude": 80.4215,
       "source": "BIPAD/DHM"
     },
     {
@@ -828,8 +828,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 28.39341,
+      "longitude": 83.977405,
       "source": "BIPAD/DHM"
     },
     {
@@ -843,8 +843,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 28.8701,
+      "longitude": 82.2929,
       "source": "BIPAD/DHM"
     },
     {
@@ -858,8 +858,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 28.945463,
+      "longitude": 80.103442,
       "source": "BIPAD/DHM"
     },
     {
@@ -873,8 +873,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 26.983797,
+      "longitude": 85.910493,
       "source": "BIPAD/DHM"
     },
     {
@@ -888,8 +888,8 @@
       "trend": "Unknown",
       "status": "ABOVE WARNING LEVEL",
       "risk_level": "warning",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 27.820186,
+      "longitude": 86.226,
       "source": "BIPAD/DHM"
     },
     {
@@ -903,8 +903,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 28.0452,
+      "longitude": 83.56068,
       "source": "BIPAD/DHM"
     },
     {
@@ -918,8 +918,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 29.308,
+      "longitude": 80.703,
       "source": "BIPAD/DHM"
     },
     {
@@ -933,8 +933,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 26.783459,
+      "longitude": 86.574356,
       "source": "BIPAD/DHM"
     },
     {
@@ -948,8 +948,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 28.582077,
+      "longitude": 81.064201,
       "source": "BIPAD/DHM"
     },
     {
@@ -963,8 +963,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 26.86666,
+      "longitude": 87.15833,
       "source": "BIPAD/DHM"
     },
     {
@@ -978,8 +978,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 28.4485859,
+      "longitude": 81.280054,
       "source": "BIPAD/DHM"
     },
     {
@@ -993,8 +993,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 29.779998,
+      "longitude": 81.948703,
       "source": "BIPAD/DHM"
     },
     {
@@ -1008,8 +1008,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 28.830786,
+      "longitude": 80.51858,
       "source": "BIPAD/DHM"
     },
     {
@@ -1023,8 +1023,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 27.775278,
+      "longitude": 85.438611,
       "source": "BIPAD/DHM"
     },
     {
@@ -1038,8 +1038,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 27.650902,
+      "longitude": 85.312493,
       "source": "BIPAD/DHM"
     },
     {
@@ -1053,8 +1053,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 29.1944,
+      "longitude": 81.0271,
       "source": "BIPAD/DHM"
     },
     {
@@ -1068,8 +1068,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 27.974259,
+      "longitude": 85.185829,
       "source": "BIPAD/DHM"
     },
     {
@@ -1083,8 +1083,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 27.71,
+      "longitude": 84.43,
       "source": "BIPAD/DHM"
     },
     {
@@ -1098,8 +1098,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 29.694,
+      "longitude": 80.613,
       "source": "BIPAD/DHM"
     },
     {
@@ -1113,8 +1113,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 28.544321,
+      "longitude": 81.597442,
       "source": "BIPAD/DHM"
     },
     {
@@ -1128,8 +1128,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 27.74412,
+      "longitude": 85.47802,
       "source": "BIPAD/DHM"
     },
     {
@@ -1143,8 +1143,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 28.03487,
+      "longitude": 82.30392,
       "source": "BIPAD/DHM"
     },
     {
@@ -1158,8 +1158,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 27.1636,
+      "longitude": 86.0116,
       "source": "BIPAD/DHM"
     },
     {
@@ -1173,8 +1173,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 28.119845,
+      "longitude": 82.882328,
       "source": "BIPAD/DHM"
     },
     {
@@ -1188,8 +1188,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 28.202405,
+      "longitude": 81.697579,
       "source": "BIPAD/DHM"
     },
     {
@@ -1203,8 +1203,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "critical",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 26.660345,
+      "longitude": 88.107933,
       "source": "BIPAD/DHM"
     },
     {
@@ -1218,8 +1218,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 28.933925,
+      "longitude": 80.294645,
       "source": "BIPAD/DHM"
     },
     {
@@ -1233,8 +1233,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 27.27194,
+      "longitude": 86.67333,
       "source": "BIPAD/DHM"
     },
     {
@@ -1248,8 +1248,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 29.118509,
+      "longitude": 82.604892,
       "source": "BIPAD/DHM"
     },
     {
@@ -1263,8 +1263,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 27.8021273,
+      "longitude": 82.7863605,
       "source": "BIPAD/DHM"
     },
     {
@@ -1278,8 +1278,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 29.538,
+      "longitude": 82.064,
       "source": "BIPAD/DHM"
     },
     {
@@ -1293,8 +1293,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 27.893089,
+      "longitude": 86.384075,
       "source": "BIPAD/DHM"
     },
     {
@@ -1308,8 +1308,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 29.529,
+      "longitude": 82.066,
       "source": "BIPAD/DHM"
     },
     {
@@ -1323,8 +1323,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 27.951219,
+      "longitude": 83.387685,
       "source": "BIPAD/DHM"
     },
     {
@@ -1338,8 +1338,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 27.37861,
+      "longitude": 87.63388,
       "source": "BIPAD/DHM"
     },
     {
@@ -1353,8 +1353,8 @@
       "trend": "Unknown",
       "status": "ABOVE DANGER LEVEL",
       "risk_level": "critical",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 26.658855,
+      "longitude": 87.488945,
       "source": "BIPAD/DHM"
     },
     {
@@ -1368,8 +1368,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 28.5555,
+      "longitude": 81.3956,
       "source": "BIPAD/DHM"
     },
     {
@@ -1383,8 +1383,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 27.632222,
+      "longitude": 85.293333,
       "source": "BIPAD/DHM"
     },
     {
@@ -1398,8 +1398,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 26.510811,
+      "longitude": 86.782523,
       "source": "BIPAD/DHM"
     },
     {
@@ -1413,8 +1413,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 26.873,
+      "longitude": 86.819,
       "source": "BIPAD/DHM"
     },
     {
@@ -1428,8 +1428,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 28.000431,
+      "longitude": 84.889347,
       "source": "BIPAD/DHM"
     },
     {
@@ -1443,8 +1443,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 27.756831,
+      "longitude": 86.193569,
       "source": "BIPAD/DHM"
     },
     {
@@ -1458,8 +1458,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 27.713,
+      "longitude": 85.3497,
       "source": "BIPAD/DHM"
     },
     {
@@ -1473,8 +1473,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 28.927377,
+      "longitude": 80.070136,
       "source": "BIPAD/DHM"
     },
     {
@@ -1488,8 +1488,8 @@
       "trend": "Unknown",
       "status": "ABOVE WARNING LEVEL",
       "risk_level": "warning",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 28.34696,
+      "longitude": 83.568292,
       "source": "BIPAD/DHM"
     },
     {
@@ -1503,8 +1503,8 @@
       "trend": "Unknown",
       "status": "ABOVE WARNING LEVEL",
       "risk_level": "warning",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 26.659565,
+      "longitude": 87.28643,
       "source": "BIPAD/DHM"
     },
     {
@@ -1518,8 +1518,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 26.913684,
+      "longitude": 87.767529,
       "source": "BIPAD/DHM"
     },
     {
@@ -1533,8 +1533,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 27.1981894,
+      "longitude": 85.4927953,
       "source": "BIPAD/DHM"
     },
     {
@@ -1548,8 +1548,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 27.9,
+      "longitude": 86.37,
       "source": "BIPAD/DHM"
     },
     {
@@ -1563,8 +1563,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 28.65638889,
+      "longitude": 82.34694444,
       "source": "BIPAD/DHM"
     },
     {
@@ -1578,8 +1578,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 27.6361,
+      "longitude": 86.0846,
       "source": "BIPAD/DHM"
     },
     {
@@ -1593,8 +1593,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 27.69971,
+      "longitude": 84.41894,
       "source": "BIPAD/DHM"
     },
     {
@@ -1608,8 +1608,8 @@
       "trend": "Unknown",
       "status": "ABOVE WARNING LEVEL",
       "risk_level": "warning",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 26.912816,
+      "longitude": 87.909616,
       "source": "BIPAD/DHM"
     },
     {
@@ -1623,8 +1623,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 27.802328,
+      "longitude": 85.00305,
       "source": "BIPAD/DHM"
     },
     {
@@ -1638,8 +1638,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 27.78,
+      "longitude": 87.45,
       "source": "BIPAD/DHM"
     },
     {
@@ -1653,8 +1653,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 28.0075,
+      "longitude": 82.093889,
       "source": "BIPAD/DHM"
     },
     {
@@ -1668,8 +1668,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 26.78396,
+      "longitude": 86.693926,
       "source": "BIPAD/DHM"
     },
     {
@@ -1683,8 +1683,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 27.972477,
+      "longitude": 85.634731,
       "source": "BIPAD/DHM"
     },
     {
@@ -1698,8 +1698,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 28.301,
+      "longitude": 83.94299,
       "source": "BIPAD/DHM"
     },
     {
@@ -1713,8 +1713,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 26.9233,
+      "longitude": 87.1552,
       "source": "BIPAD/DHM"
     },
     {
@@ -1728,8 +1728,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 26.784702,
+      "longitude": 86.352242,
       "source": "BIPAD/DHM"
     },
     {
@@ -1743,8 +1743,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 27.311975,
+      "longitude": 87.1892,
       "source": "BIPAD/DHM"
     },
     {
@@ -1758,8 +1758,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 28.508327,
+      "longitude": 83.905059,
       "source": "BIPAD/DHM"
     },
     {
@@ -1773,8 +1773,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 28.07284,
+      "longitude": 83.811417,
       "source": "BIPAD/DHM"
     },
     {
@@ -1788,8 +1788,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 27.601389,
+      "longitude": 87.346389,
       "source": "BIPAD/DHM"
     },
     {
@@ -1803,8 +1803,8 @@
       "trend": "Unknown",
       "status": "ABOVE DANGER LEVEL",
       "risk_level": "critical",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 27.1,
+      "longitude": 85.466667,
       "source": "BIPAD/DHM"
     },
     {
@@ -1818,8 +1818,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 28.188822,
+      "longitude": 81.36565,
       "source": "BIPAD/DHM"
     },
     {
@@ -1833,8 +1833,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 26.977,
+      "longitude": 85.393,
       "source": "BIPAD/DHM"
     },
     {
@@ -1848,8 +1848,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 27.5458019,
+      "longitude": 82.9882974,
       "source": "BIPAD/DHM"
     },
     {
@@ -1863,8 +1863,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 27.7628497,
+      "longitude": 83.201588,
       "source": "BIPAD/DHM"
     },
     {
@@ -1878,8 +1878,8 @@
       "trend": "Unknown",
       "status": "ABOVE DANGER LEVEL",
       "risk_level": "critical",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 27.735277,
+      "longitude": 85.30722,
       "source": "BIPAD/DHM"
     },
     {
@@ -1893,8 +1893,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 27.6082829,
+      "longitude": 82.9593431,
       "source": "BIPAD/DHM"
     },
     {
@@ -1908,8 +1908,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 29.2956,
+      "longitude": 81.4019,
       "source": "BIPAD/DHM"
     },
     {
@@ -1923,8 +1923,8 @@
       "trend": "Unknown",
       "status": "ABOVE WARNING LEVEL",
       "risk_level": "warning",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 27.94,
+      "longitude": 85.946,
       "source": "BIPAD/DHM"
     },
     {
@@ -1938,8 +1938,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 28.0628,
+      "longitude": 84.487,
       "source": "BIPAD/DHM"
     },
     {
@@ -1953,8 +1953,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 28.568,
+      "longitude": 81.768,
       "source": "BIPAD/DHM"
     },
     {
@@ -1968,8 +1968,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 28.18981,
+      "longitude": 83.279398,
       "source": "BIPAD/DHM"
     },
     {
@@ -1983,8 +1983,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 29.943636,
+      "longitude": 81.848762,
       "source": "BIPAD/DHM"
     },
     {
@@ -1998,8 +1998,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 28.3565601,
+      "longitude": 81.7135456,
       "source": "BIPAD/DHM"
     },
     {
@@ -2013,8 +2013,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 27.138,
+      "longitude": 86.024,
       "source": "BIPAD/DHM"
     },
     {
@@ -2028,8 +2028,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 29.668,
+      "longitude": 80.56,
       "source": "BIPAD/DHM"
     },
     {
@@ -2043,8 +2043,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 28.042071,
+      "longitude": 84.629066,
       "source": "BIPAD/DHM"
     },
     {
@@ -2058,8 +2058,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 27.721801,
+      "longitude": 85.344395,
       "source": "BIPAD/DHM"
     },
     {
@@ -2073,8 +2073,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 29.5134824,
+      "longitude": 80.5782862,
       "source": "BIPAD/DHM"
     },
     {
@@ -2088,8 +2088,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 28.199275,
+      "longitude": 85.45808,
       "source": "BIPAD/DHM"
     },
     {
@@ -2103,8 +2103,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 27.972,
+      "longitude": 83.4669,
       "source": "BIPAD/DHM"
     },
     {
@@ -2118,8 +2118,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 27.74356779,
+      "longitude": 85.351314,
       "source": "BIPAD/DHM"
     },
     {
@@ -2133,8 +2133,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 29.382413,
+      "longitude": 80.769669,
       "source": "BIPAD/DHM"
     },
     {
@@ -2148,8 +2148,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 28.852886,
+      "longitude": 80.433658,
       "source": "BIPAD/DHM"
     },
     {
@@ -2163,8 +2163,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 28.20302,
+      "longitude": 84.45229,
       "source": "BIPAD/DHM"
     },
     {
@@ -2178,8 +2178,8 @@
       "trend": "Unknown",
       "status": "ABOVE DANGER LEVEL",
       "risk_level": "critical",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 27.350586,
+      "longitude": 86.218347,
       "source": "BIPAD/DHM"
     },
     {
@@ -2193,8 +2193,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 27.26,
+      "longitude": 86.65,
       "source": "BIPAD/DHM"
     },
     {
@@ -2208,8 +2208,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 27.796588,
+      "longitude": 83.533467,
       "source": "BIPAD/DHM"
     },
     {
@@ -2223,8 +2223,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 27.44,
+      "longitude": 84.97,
       "source": "BIPAD/DHM"
     },
     {
@@ -2238,8 +2238,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 27.774022,
+      "longitude": 85.425821,
       "source": "BIPAD/DHM"
     },
     {
@@ -2253,8 +2253,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 27.755222,
+      "longitude": 85.421528,
       "source": "BIPAD/DHM"
     },
     {
@@ -2268,8 +2268,8 @@
       "trend": "Unknown",
       "status": "ABOVE WARNING LEVEL",
       "risk_level": "warning",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 28.61,
+      "longitude": 80.749,
       "source": "BIPAD/DHM"
     },
     {
@@ -2283,8 +2283,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 26.945607,
+      "longitude": 85.309674,
       "source": "BIPAD/DHM"
     },
     {
@@ -2298,8 +2298,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 27.623968,
+      "longitude": 85.353719,
       "source": "BIPAD/DHM"
     },
     {
@@ -2313,8 +2313,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 27.658067,
+      "longitude": 82.9957647,
       "source": "BIPAD/DHM"
     },
     {
@@ -2328,8 +2328,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 28.53,
+      "longitude": 84.828,
       "source": "BIPAD/DHM"
     },
     {
@@ -2343,8 +2343,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 27.672794,
+      "longitude": 85.365522,
       "source": "BIPAD/DHM"
     },
     {
@@ -2358,8 +2358,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 27.668698,
+      "longitude": 85.431669,
       "source": "BIPAD/DHM"
     },
     {
@@ -2373,8 +2373,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 29.654137,
+      "longitude": 81.883093,
       "source": "BIPAD/DHM"
     },
     {
@@ -2388,8 +2388,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 27.295,
+      "longitude": 87.21499,
       "source": "BIPAD/DHM"
     },
     {
@@ -2403,8 +2403,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 27.68,
+      "longitude": 83.12,
       "source": "BIPAD/DHM"
     },
     {
@@ -2418,8 +2418,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 28.159,
+      "longitude": 81.775,
       "source": "BIPAD/DHM"
     },
     {
@@ -2433,8 +2433,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 27.2863,
+      "longitude": 87.7233,
       "source": "BIPAD/DHM"
     },
     {
@@ -2448,8 +2448,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 29.5,
+      "longitude": 81.129,
       "source": "BIPAD/DHM"
     },
     {
@@ -2463,8 +2463,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 29.344,
+      "longitude": 80.413,
       "source": "BIPAD/DHM"
     },
     {
@@ -2478,8 +2478,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 29.47,
+      "longitude": 80.898,
       "source": "BIPAD/DHM"
     },
     {
@@ -2493,8 +2493,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 28.7683583,
+      "longitude": 83.7064396,
       "source": "BIPAD/DHM"
     },
     {
@@ -2508,8 +2508,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 27.75,
+      "longitude": 84.35,
       "source": "BIPAD/DHM"
     },
     {
@@ -2523,8 +2523,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 28.484,
+      "longitude": 83.64699,
       "source": "BIPAD/DHM"
     },
     {
@@ -2538,8 +2538,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 27.18042,
+      "longitude": 85.170949,
       "source": "BIPAD/DHM"
     },
     {
@@ -2553,8 +2553,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 27.883889,
+      "longitude": 83.8,
       "source": "BIPAD/DHM"
     },
     {
@@ -2568,8 +2568,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 27.176729,
+      "longitude": 86.473535,
       "source": "BIPAD/DHM"
     },
     {
@@ -2583,8 +2583,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 27.86915,
+      "longitude": 86.462423,
       "source": "BIPAD/DHM"
     },
     {
@@ -2598,8 +2598,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 27.8047,
+      "longitude": 85.766,
       "source": "BIPAD/DHM"
     },
     {
@@ -2613,8 +2613,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 27.692285,
+      "longitude": 85.25073,
       "source": "BIPAD/DHM"
     },
     {
@@ -2628,8 +2628,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 27.693564,
+      "longitude": 87.363245,
       "source": "BIPAD/DHM"
     },
     {
@@ -2643,8 +2643,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 26.815065,
+      "longitude": 86.705307,
       "source": "BIPAD/DHM"
     },
     {
@@ -2658,8 +2658,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 26.709853,
+      "longitude": 87.88055,
       "source": "BIPAD/DHM"
     },
     {
@@ -2673,8 +2673,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 27.444704,
+      "longitude": 86.572648,
       "source": "BIPAD/DHM"
     },
     {
@@ -2688,8 +2688,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 26.9299,
+      "longitude": 87.3173,
       "source": "BIPAD/DHM"
     },
     {
@@ -2703,8 +2703,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 26.701193,
+      "longitude": 86.511086,
       "source": "BIPAD/DHM"
     },
     {
@@ -2718,8 +2718,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 28.5739207,
+      "longitude": 81.6671437,
       "source": "BIPAD/DHM"
     },
     {
@@ -2733,8 +2733,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 29.557,
+      "longitude": 81.1964,
       "source": "BIPAD/DHM"
     },
     {
@@ -2748,8 +2748,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 28.5167,
+      "longitude": 81.6667,
       "source": "BIPAD/DHM"
     },
     {
@@ -2763,8 +2763,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 28.9528,
+      "longitude": 81.4417,
       "source": "BIPAD/DHM"
     },
     {
@@ -2778,8 +2778,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 28.96,
+      "longitude": 81.12,
       "source": "BIPAD/DHM"
     },
     {
@@ -2793,8 +2793,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 28.65305556,
+      "longitude": 81.28694444,
       "source": "BIPAD/DHM"
     },
     {
@@ -2808,8 +2808,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 28.64118,
+      "longitude": 81.28334,
       "source": "BIPAD/DHM"
     },
     {
@@ -2823,8 +2823,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 28.558,
+      "longitude": 80.816,
       "source": "BIPAD/DHM"
     },
     {
@@ -2838,8 +2838,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 26.65885,
+      "longitude": 87.317154,
       "source": "BIPAD/DHM"
     },
     {
@@ -2853,8 +2853,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 29.9433,
+      "longitude": 81.8569,
       "source": "BIPAD/DHM"
     },
     {
@@ -2868,8 +2868,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 29.525219,
+      "longitude": 81.797362,
       "source": "BIPAD/DHM"
     },
     {
@@ -2883,8 +2883,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 28.17065,
+      "longitude": 85.342554,
       "source": "BIPAD/DHM"
     },
     {
@@ -2898,8 +2898,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 28.271297,
+      "longitude": 85.377649,
       "source": "BIPAD/DHM"
     },
     {
@@ -2913,8 +2913,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 27.786773,
+      "longitude": 85.899324,
       "source": "BIPAD/DHM"
     },
     {
@@ -2928,8 +2928,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 27.336303,
+      "longitude": 85.194048,
       "source": "BIPAD/DHM"
     },
     {
@@ -2943,8 +2943,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 28.16222222,
+      "longitude": 85.34611111,
       "source": "BIPAD/DHM"
     },
     {
@@ -2958,8 +2958,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 26.989,
+      "longitude": 85.467,
       "source": "BIPAD/DHM"
     },
     {
@@ -2973,8 +2973,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 29.614088,
+      "longitude": 81.871769,
       "source": "BIPAD/DHM"
     },
     {
@@ -2988,8 +2988,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 26.64039,
+      "longitude": 87.934586,
       "source": "BIPAD/DHM"
     },
     {
@@ -3003,8 +3003,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 28.046,
+      "longitude": 84.816,
       "source": "BIPAD/DHM"
     },
     {
@@ -3018,8 +3018,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 28.5883,
+      "longitude": 81.24846,
       "source": "BIPAD/DHM"
     },
     {
@@ -3033,8 +3033,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 26.598001,
+      "longitude": 87.287292,
       "source": "BIPAD/DHM"
     },
     {
@@ -3048,8 +3048,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 27.12,
+      "longitude": 86.0802,
       "source": "BIPAD/DHM"
     },
     {
@@ -3063,8 +3063,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 29.179,
+      "longitude": 81.215,
       "source": "BIPAD/DHM"
     },
     {
@@ -3078,8 +3078,8 @@
       "trend": "Unknown",
       "status": "ABOVE WARNING LEVEL",
       "risk_level": "warning",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 29.15,
+      "longitude": 81.208,
       "source": "BIPAD/DHM"
     },
     {
@@ -3093,8 +3093,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 27.113396,
+      "longitude": 85.371086,
       "source": "BIPAD/DHM"
     },
     {
@@ -3108,8 +3108,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 28.951,
+      "longitude": 80.254,
       "source": "BIPAD/DHM"
     },
     {
@@ -3123,8 +3123,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 27.895767,
+      "longitude": 85.232256,
       "source": "BIPAD/DHM"
     },
     {
@@ -3138,8 +3138,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 26.661169,
+      "longitude": 87.408989,
       "source": "BIPAD/DHM"
     },
     {
@@ -3153,8 +3153,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 26.467707,
+      "longitude": 87.359287,
       "source": "BIPAD/DHM"
     },
     {
@@ -3168,8 +3168,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 28.815197,
+      "longitude": 81.738498,
       "source": "BIPAD/DHM"
     },
     {
@@ -3183,8 +3183,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 28.784518,
+      "longitude": 81.584198,
       "source": "BIPAD/DHM"
     },
     {
@@ -3198,8 +3198,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 27.5877,
+      "longitude": 84.7361,
       "source": "BIPAD/DHM"
     },
     {
@@ -3213,8 +3213,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 28.214136,
+      "longitude": 82.695314,
       "source": "BIPAD/DHM"
     },
     {
@@ -3228,8 +3228,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 28.093,
+      "longitude": 84.228,
       "source": "BIPAD/DHM"
     },
     {
@@ -3243,8 +3243,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 29.64,
+      "longitude": 80.5121,
       "source": "BIPAD/DHM"
     },
     {
@@ -3258,8 +3258,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 27.947452,
+      "longitude": 83.874715,
       "source": "BIPAD/DHM"
     },
     {
@@ -3273,8 +3273,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 29.162,
+      "longitude": 81.309,
       "source": "BIPAD/DHM"
     },
     {
@@ -3288,8 +3288,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 27.548673,
+      "longitude": 84.827716,
       "source": "BIPAD/DHM"
     },
     {
@@ -3303,8 +3303,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 28.220681,
+      "longitude": 81.574758,
       "source": "BIPAD/DHM"
     },
     {
@@ -3318,8 +3318,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 27.6775,
+      "longitude": 85.3358,
       "source": "BIPAD/DHM"
     },
     {
@@ -3333,8 +3333,8 @@
       "trend": "Unknown",
       "status": "ABOVE WARNING LEVEL",
       "risk_level": "warning",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 28.076667,
+      "longitude": 82.798889,
       "source": "BIPAD/DHM"
     },
     {
@@ -3348,8 +3348,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 28.301,
+      "longitude": 83.918,
       "source": "BIPAD/DHM"
     },
     {
@@ -3363,8 +3363,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 28.341253,
+      "longitude": 83.561792,
       "source": "BIPAD/DHM"
     },
     {
@@ -3378,8 +3378,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 27.3775,
+      "longitude": 87.62666,
       "source": "BIPAD/DHM"
     },
     {
@@ -3393,8 +3393,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 28.28022,
+      "longitude": 84.35831,
       "source": "BIPAD/DHM"
     },
     {
@@ -3408,8 +3408,8 @@
       "trend": "Unknown",
       "status": "ABOVE DANGER LEVEL",
       "risk_level": "critical",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 28.876454,
+      "longitude": 80.673521,
       "source": "BIPAD/DHM"
     },
     {
@@ -3423,8 +3423,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 28.961434,
+      "longitude": 82.246942,
       "source": "BIPAD/DHM"
     },
     {
@@ -3438,8 +3438,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 27.07,
+      "longitude": 85.938,
       "source": "BIPAD/DHM"
     },
     {
@@ -3453,8 +3453,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 27.2695335,
+      "longitude": 85.8733013,
       "source": "BIPAD/DHM"
     },
     {
@@ -3468,8 +3468,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 28.516186,
+      "longitude": 84.358769,
       "source": "BIPAD/DHM"
     },
     {
@@ -3483,8 +3483,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 28.2031524,
+      "longitude": 84.4014369,
       "source": "BIPAD/DHM"
     },
     {
@@ -3498,8 +3498,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 27.953594,
+      "longitude": 84.424148,
       "source": "BIPAD/DHM"
     },
     {
@@ -3513,8 +3513,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 27.523273,
+      "longitude": 85.689244,
       "source": "BIPAD/DHM"
     },
     {
@@ -3528,8 +3528,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 28.010844,
+      "longitude": 85.535356,
       "source": "BIPAD/DHM"
     },
     {
@@ -3543,8 +3543,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 27.575,
+      "longitude": 85.499,
       "source": "BIPAD/DHM"
     },
     {
@@ -3558,8 +3558,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 29.324,
+      "longitude": 80.394,
       "source": "BIPAD/DHM"
     },
     {
@@ -3573,8 +3573,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 27.3024,
+      "longitude": 87.2072,
       "source": "BIPAD/DHM"
     },
     {
@@ -3588,8 +3588,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 29.359068,
+      "longitude": 80.839582,
       "source": "BIPAD/DHM"
     },
     {
@@ -3603,8 +3603,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 27.964496,
+      "longitude": 84.263371,
       "source": "BIPAD/DHM"
     },
     {
@@ -3618,8 +3618,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 26.855192,
+      "longitude": 87.152283,
       "source": "BIPAD/DHM"
     },
     {
@@ -3633,8 +3633,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 28.294,
+      "longitude": 82.028,
       "source": "BIPAD/DHM"
     },
     {
@@ -3648,8 +3648,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 26.729242,
+      "longitude": 87.19529,
       "source": "BIPAD/DHM"
     },
     {
@@ -3663,8 +3663,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 28.640678,
+      "longitude": 82.030897,
       "source": "BIPAD/DHM"
     },
     {
@@ -3678,8 +3678,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 29.169,
+      "longitude": 80.329,
       "source": "BIPAD/DHM"
     },
     {
@@ -3693,8 +3693,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 27.641,
+      "longitude": 85.71,
       "source": "BIPAD/DHM"
     },
     {
@@ -3708,8 +3708,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 26.9283,
+      "longitude": 87.1425,
       "source": "BIPAD/DHM"
     },
     {
@@ -3723,8 +3723,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 27.337966,
+      "longitude": 85.993744,
       "source": "BIPAD/DHM"
     },
     {
@@ -3738,8 +3738,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 27.918694,
+      "longitude": 85.311554,
       "source": "BIPAD/DHM"
     },
     {
@@ -3753,8 +3753,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 27.1586,
+      "longitude": 87.7116,
       "source": "BIPAD/DHM"
     },
     {
@@ -3768,8 +3768,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 28.913,
+      "longitude": 80.323,
       "source": "BIPAD/DHM"
     },
     {
@@ -3783,8 +3783,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 29.4877756,
+      "longitude": 80.5667782,
       "source": "BIPAD/DHM"
     },
     {
@@ -3798,8 +3798,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 26.704172,
+      "longitude": 87.211555,
       "source": "BIPAD/DHM"
     },
     {
@@ -3813,8 +3813,8 @@
       "trend": "Unknown",
       "status": "ABOVE DANGER LEVEL",
       "risk_level": "critical",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 29.29813,
+      "longitude": 80.81931,
       "source": "BIPAD/DHM"
     },
     {
@@ -3828,8 +3828,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 28.0108296,
+      "longitude": 83.6082701,
       "source": "BIPAD/DHM"
     },
     {
@@ -3843,8 +3843,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 29.49002,
+      "longitude": 81.05162,
       "source": "BIPAD/DHM"
     },
     {
@@ -3858,8 +3858,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 28.425662,
+      "longitude": 81.3946336,
       "source": "BIPAD/DHM"
     },
     {
@@ -3873,8 +3873,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 27.899553,
+      "longitude": 86.907325,
       "source": "BIPAD/DHM"
     },
     {
@@ -3888,8 +3888,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 26.9152,
+      "longitude": 87.1638,
       "source": "BIPAD/DHM"
     },
     {
@@ -3903,8 +3903,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 26.97419,
+      "longitude": 86.44001,
       "source": "BIPAD/DHM"
     },
     {
@@ -3918,8 +3918,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 29.0172,
+      "longitude": 82.7921,
       "source": "BIPAD/DHM"
     },
     {
@@ -3933,8 +3933,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 29.203031,
+      "longitude": 81.90983,
       "source": "BIPAD/DHM"
     },
     {
@@ -3948,8 +3948,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 29.59,
+      "longitude": 81.219,
       "source": "BIPAD/DHM"
     },
     {
@@ -3963,8 +3963,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 27.5537,
+      "longitude": 85.7487,
       "source": "BIPAD/DHM"
     },
     {
@@ -3978,8 +3978,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 27.17083333,
+      "longitude": 86.40111111,
       "source": "BIPAD/DHM"
     },
     {
@@ -3993,8 +3993,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 26.604353,
+      "longitude": 87.128845,
       "source": "BIPAD/DHM"
     },
     {
@@ -4008,8 +4008,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 27.860094,
+      "longitude": 85.134943,
       "source": "BIPAD/DHM"
     },
     {
@@ -4023,8 +4023,8 @@
       "trend": "Unknown",
       "status": "ABOVE DANGER LEVEL",
       "risk_level": "critical",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 27.802439,
+      "longitude": 84.844102,
       "source": "BIPAD/DHM"
     },
     {
@@ -4038,8 +4038,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 28.06376,
+      "longitude": 81.844892,
       "source": "BIPAD/DHM"
     },
     {
@@ -4053,8 +4053,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 27.86795,
+      "longitude": 82.79885,
       "source": "BIPAD/DHM"
     },
     {
@@ -4068,8 +4068,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 28.0075,
+      "longitude": 82.093889,
       "source": "BIPAD/DHM"
     },
     {
@@ -4083,8 +4083,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 29.555,
+      "longitude": 81.215,
       "source": "BIPAD/DHM"
     },
     {
@@ -4098,8 +4098,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 28.974343,
+      "longitude": 81.116627,
       "source": "BIPAD/DHM"
     },
     {
@@ -4113,8 +4113,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 29.246477,
+      "longitude": 80.925143,
       "source": "BIPAD/DHM"
     },
     {
@@ -4128,8 +4128,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 27.97,
+      "longitude": 85.18,
       "source": "BIPAD/DHM"
     },
     {
@@ -4143,8 +4143,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 27.833,
+      "longitude": 84.546,
       "source": "BIPAD/DHM"
     },
     {
@@ -4158,8 +4158,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 28.99073,
+      "longitude": 82.577203,
       "source": "BIPAD/DHM"
     },
     {
@@ -4173,8 +4173,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 28.683,
+      "longitude": 82.2666,
       "source": "BIPAD/DHM"
     },
     {
@@ -4188,8 +4188,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 28.93361111,
+      "longitude": 80.90972222,
       "source": "BIPAD/DHM"
     },
     {
@@ -4203,8 +4203,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 27.74381,
+      "longitude": 83.462251,
       "source": "BIPAD/DHM"
     },
     {
@@ -4218,8 +4218,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 29.132902,
+      "longitude": 81.59658,
       "source": "BIPAD/DHM"
     },
     {
@@ -4233,8 +4233,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 29.228,
+      "longitude": 81.952,
       "source": "BIPAD/DHM"
     },
     {
@@ -4248,8 +4248,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 28.098163,
+      "longitude": 85.318589,
       "source": "BIPAD/DHM"
     },
     {
@@ -4263,8 +4263,8 @@
       "trend": "Unknown",
       "status": "BELOW WARNING LEVEL",
       "risk_level": "normal",
-      "latitude": null,
-      "longitude": null,
+      "latitude": 27.82,
+      "longitude": 84.45,
       "source": "BIPAD/DHM"
     }
   ]
