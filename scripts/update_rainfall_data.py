@@ -79,8 +79,6 @@ def bipad_rainfall():
         print(f"BIPAD API rainfall unavailable: {e}")
         raw=[]
     out=[]
-    if raw:
-        print("BIPAD rain sample:", json.dumps(raw[0], ensure_ascii=False)[:1800] if isinstance(raw[0],dict) else str(raw[0])[:1800])
     for item in raw:
         if not isinstance(item,dict): continue
         station=item.get("station") if isinstance(item.get("station"),dict) else {}
@@ -182,6 +180,15 @@ def main():
         except Exception as e:
             print(f"BIPAD rainfall fallback failed: {e}")
     if len(best)<20: raise RuntimeError(f"Rainfall sources returned only {len(best)} usable stations")
+    observed=[]
+    for row in best:
+        try:
+            observed.append(datetime.fromisoformat(str(row.get("observed_at","")).replace("Z","+00:00")))
+        except Exception:
+            pass
+    latest_observation=max(observed) if observed else None
+    freshness_hours=((datetime.now(timezone.utc)-latest_observation).total_seconds()/3600) if latest_observation else None
+    snapshot_status="LIVE" if freshness_hours is not None and freshness_hours <= 6 else "STALE"
     # Add coordinates only from official station pages. Missing coordinates remain explicit.
     with ThreadPoolExecutor(max_workers=12) as pool:
         futures={pool.submit(coord_from_page,s["source_url"]):i for i,s in enumerate(best) if s.get("source_url")}
@@ -195,7 +202,7 @@ def main():
         s["peak_mm"]=peak
         s["alert_windows"]=exceeded
         s["risk_level"]="critical" if exceeded else ("watch" if peak is not None and any(v is not None and v>=THRESHOLDS[k]*.75 for k,v in r.items()) else "normal")
-    OUT.write_text(json.dumps({"schema_version":1,"source":"Department of Hydrology and Meteorology (DHM), Government of Nepal","source_url":DHM_URL,"updated_at":now,"data_status":"LIVE","station_count":len(best),"thresholds_mm":THRESHOLDS,"stations":best},ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
-    HEALTH.write_text(json.dumps({"schema_version":1,"checked_at":now,"source":"DHM Rainfall Watch","source_url":DHM_URL,"status":"LIVE","stations_found":len(best),"stations_with_coordinates":sum(1 for s in best if s.get("latitude") is not None),"message":"Loaded official accumulated rainfall observations."},ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+    OUT.write_text(json.dumps({"schema_version":1,"source":"Department of Hydrology and Meteorology (DHM), Government of Nepal","source_url":DHM_URL,"updated_at":now,"data_status":snapshot_status,"station_count":len(best),"thresholds_mm":THRESHOLDS,"stations":best,"latest_observation_at":latest_observation.isoformat() if latest_observation else None,"source_status":snapshot_status},ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+    HEALTH.write_text(json.dumps({"schema_version":1,"checked_at":now,"source":"DHM Rainfall Watch / BIPAD","source_url":DHM_URL,"status":snapshot_status,"stations_found":len(best),"stations_with_coordinates":sum(1 for s in best if s.get("latitude") is not None),"message":("Loaded recent accumulated rainfall observations." if snapshot_status=="LIVE" else "Source reachable, but latest rainfall observation is stale.")},ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
     print(f"LIVE: {len(best)} rainfall stations; coordinates: {sum(1 for s in best if s.get('latitude') is not None)}")
 if __name__=="__main__": main()
