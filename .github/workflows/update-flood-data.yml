@@ -34,10 +34,14 @@ jobs:
       - name: Fetch government flood data
         run: python scripts/update_flood_data.py
 
+      - name: Update rolling station history
+        run: python scripts/update_station_history.py
+
       - name: Validate published snapshot
         run: |
           python -m json.tool data/flood-data.json >/dev/null
           python -m json.tool data/source-health.json >/dev/null
+          python -m json.tool data/station-history.json >/dev/null
           python - <<'PY'
           import json
           from pathlib import Path
@@ -53,14 +57,17 @@ jobs:
               raise SystemExit(f"Insufficient Nepal station coordinates: {len(coords)}/{len(stations)}")
           if h.get('status') not in {'LIVE','LIVE_PARTIAL','STALE','ERROR','UNAVAILABLE'}:
               raise SystemExit(f"Invalid source health status: {h.get('status')}")
-          print(f"Stations: {len(stations)} | data: {d.get('data_status')} | source: {h.get('status')}")
+          hist=json.loads(Path('data/station-history.json').read_text())
+          if not isinstance(hist.get('stations'),dict):
+              raise SystemExit('Invalid station history structure')
+          print(f"Stations: {len(stations)} | history: {len(hist.get('stations',{}))} | data: {d.get('data_status')} | source: {h.get('status')}")
           PY
 
       - name: Commit snapshot
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/flood-data.json data/source-health.json
+          git add data/flood-data.json data/source-health.json data/station-history.json
           if git diff --cached --quiet; then
             echo "No data changes."
           else
