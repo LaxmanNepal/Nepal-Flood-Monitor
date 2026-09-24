@@ -14,7 +14,7 @@ const L=leaflet||{
 const map=L.map('map',{zoomControl:true,scrollWheelZoom:true}).setView([28.25,84.1],7);
 const base=L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'© OpenStreetMap contributors'}).addTo(map);
 const satellite=L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',{maxZoom:19,attribution:'Tiles © Esri'});
-const rivers=L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Hydro_Reference/MapServer/tile/{z}/{y}/{x}',{maxZoom:19,opacity:.78,attribution:'Hydrography © Esri'});
+const rivers=L.tileLayer('https://services.arcgisonline.com/ArcGIS/rest/services/Reference/World_Hydro_Reference/MapServer/tile/{z}/{y}/{x}',{maxZoom:19,opacity:.9,attribution:'Hydrography © Esri'});
 const rainfallLayer=L.layerGroup().addTo(map);
 const $=id=>document.getElementById(id);const el={search:$('station-search'),province:$('province-filter'),district:$('district-filter'),basin:$('basin-filter'),sort:$('sort-filter'),risk:$('risk-filter'),list:$('station-list'),riverGrid:$('river-grid'),summary:$('result-summary'),count:$('station-count'),updated:$('last-updated'),freshness:$('freshness'),label:$('live-label'),refresh:$('refresh'),locate:$('locate'),location:$('location-text'),toast:$('toast')};
 const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));const num=v=>{const n=Number(v);return Number.isFinite(n)&&Math.abs(n)<90000?n:null};
