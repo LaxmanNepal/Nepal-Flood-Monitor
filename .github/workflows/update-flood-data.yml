@@ -48,6 +48,9 @@ jobs:
               raise SystemExit(f'Invalid station count: {len(stations) if isinstance(stations,list) else "not a list"}')
           if d.get('data_status') not in {'LIVE','LIVE_PARTIAL','STALE'}:
               raise SystemExit(f"Invalid data status: {d.get('data_status')}")
+          coords=[s for s in stations if isinstance(s,dict) and 26 <= float(s.get('latitude', -999)) <= 31 and 80 <= float(s.get('longitude', -999)) <= 89]
+          if len(coords) < max(20, int(len(stations) * 0.80)):
+              raise SystemExit(f"Insufficient Nepal station coordinates: {len(coords)}/{len(stations)}")
           if h.get('status') not in {'LIVE','LIVE_PARTIAL','STALE','ERROR','UNAVAILABLE'}:
               raise SystemExit(f"Invalid source health status: {h.get('status')}")
           print(f"Stations: {len(stations)} | data: {d.get('data_status')} | source: {h.get('status')}")
