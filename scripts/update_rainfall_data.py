@@ -79,6 +79,9 @@ def bipad_rainfall():
         print(f"BIPAD API rainfall unavailable: {e}")
         raw=[]
     out=[]
+    if raw:
+        print("BIPAD rainfall sample keys:", list(raw[0].keys()) if isinstance(raw[0],dict) else type(raw[0]).__name__)
+        print("BIPAD rainfall sample:", json.dumps(raw[0], ensure_ascii=False)[:1800] if isinstance(raw[0],dict) else str(raw[0])[:1800])
     for item in raw:
         if not isinstance(item,dict): continue
         station=item.get("station") if isinstance(item.get("station"),dict) else {}
