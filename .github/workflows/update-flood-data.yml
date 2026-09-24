@@ -2,8 +2,13 @@ name: Update flood data
 
 on:
   workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/update-flood-data.yml"
+      - "scripts/update_flood_data.py"
+      - "data/stations.json"
   schedule:
-    - cron: "*/15 * * * *"
+    - cron: "7,22,37,52 * * * *"
 
 permissions:
   contents: write
@@ -24,6 +29,7 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+          check-latest: true
 
       - name: Fetch government flood data
         run: python scripts/update_flood_data.py
