@@ -10,6 +10,7 @@ from urllib.request import Request,urlopen
 ROOT=Path(__file__).resolve().parents[1]; DATA=ROOT/"data"
 OUT=DATA/"rainfall-data.json"; HEALTH=DATA/"rainfall-source-health.json"
 DHM_URL="https://dhm.gov.np/hydrology/rainfall-watch-map"
+BIPAD_URL="https://bipadportal.gov.np/api/v1/rain-trimed/?limit=1000"
 UA="Mozilla/5.0 (compatible; Nepal-Flood-Monitor/6.0; +https://github.com/LaxmanNepal/Nepal-Flood-Monitor)"
 THRESHOLDS={"1h":60.0,"3h":80.0,"6h":100.0,"12h":120.0,"24h":140.0}
 
@@ -49,6 +50,43 @@ def coord_from_page(url):
             if 26<=lat<=31 and 80<=lon<=89:return lat,lon
     except Exception: pass
     return None
+
+def json_fetch(url,timeout=30):
+    raw=fetch(url,timeout)
+    return json.loads(raw)
+
+def records_from_json(obj):
+    if isinstance(obj,dict):
+        for key in ("results","data","records","rain","stations"):
+            if isinstance(obj.get(key),list): return obj[key]
+    return obj if isinstance(obj,list) else []
+
+def first_value(d,*keys):
+    if not isinstance(d,dict): return None
+    for k in keys:
+        if k in d and d[k] not in (None,""): return d[k]
+    return None
+
+def bipad_rainfall():
+    obj=json_fetch(BIPAD_URL,45)
+    raw=records_from_json(obj)
+    out=[]
+    for item in raw:
+        if not isinstance(item,dict): continue
+        station=item.get("station") if isinstance(item.get("station"),dict) else {}
+        loc=item.get("station_location") if isinstance(item.get("station_location"),dict) else {}
+        sid=first_value(item,"station_id","station_no","station_number","id") or first_value(station,"id","station_id")
+        name=first_value(item,"station_name","name","title") or first_value(station,"name","title")
+        if not name: continue
+        val=first_value(item,"rainfall","rain","value","accumulated_rainfall","rainfall_value")
+        val=number(val)
+        lat=number(first_value(item,"latitude","lat")) or number(first_value(station,"latitude","lat")) or number(first_value(loc,"latitude","lat"))
+        lon=number(first_value(item,"longitude","lon","lng")) or number(first_value(station,"longitude","lon","lng")) or number(first_value(loc,"longitude","lon","lng"))
+        if lat is not None and not (26<=lat<=31): lat=None
+        if lon is not None and not (80<=lon<=89): lon=None
+        out.append({"station_id":str(sid or name),"name":str(name),"basin":str(first_value(item,"basin","basin_name") or first_value(station,"basin","basin_name") or ""), "district":str(first_value(item,"district","district_name") or first_value(station,"district","district_name") or ""), "rainfall":{"1h":val,"3h":None,"6h":None,"12h":None,"24h":None}, "status":status([((str(first_value(item,"status") or "")), "")]), "latitude":lat,"longitude":lon,"source":"BIPAD/DHM Rain Watch","source_url":"https://bipadportal.gov.np/realtime/","source_period":"1h"} )
+    return out
+
 def station_url(href,number_id):
     if href:
         if href.startswith("http"): return href
@@ -95,7 +133,14 @@ def main():
             row={"station_id":sid or name.lower().replace(" ","-"),"name":name,"basin":clean(cells[bi][0]) if bi is not None and bi<len(cells) else "","district":clean(cells[di][0]) if di is not None and di<len(cells) else "","rainfall":values,"status":status([c for c in cells]),"latitude":None,"longitude":None,"source":"DHM Rainfall Watch","source_url":station_url(href,sid)}
             rows_out.append(row)
         if len(rows_out)>len(best): best=rows_out
-    if len(best)<20: raise RuntimeError(f"DHM Rainfall Watch returned only {len(best)} usable stations")
+    if len(best)<20:
+        try:
+            fallback=bipad_rainfall()
+            if len(fallback)>=20:
+                best=fallback
+        except Exception as e:
+            print(f"BIPAD rainfall fallback failed: {e}")
+    if len(best)<20: raise RuntimeError(f"Rainfall sources returned only {len(best)} usable stations")
     # Add coordinates only from official station pages. Missing coordinates remain explicit.
     with ThreadPoolExecutor(max_workers=12) as pool:
         futures={pool.submit(coord_from_page,s["source_url"]):i for i,s in enumerate(best) if s.get("source_url")}
