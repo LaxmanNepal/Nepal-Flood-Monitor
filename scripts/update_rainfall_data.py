@@ -10,7 +10,7 @@ from urllib.request import Request,urlopen
 ROOT=Path(__file__).resolve().parents[1]; DATA=ROOT/"data"
 OUT=DATA/"rainfall-data.json"; HEALTH=DATA/"rainfall-source-health.json"
 DHM_URL="https://dhm.gov.np/hydrology/rainfall-watch-map"
-BIPAD_URL="https://bipadportal.gov.np/api/v1/rain-trimed/?limit=1000&ordering=-measuredOn"
+BIPAD_URL="https://bipadportal.gov.np/api/v1/rain/?limit=1000&ordering=-measuredOn"
 BIPAD_REALTIME_URL="https://bipadportal.gov.np/realtime/"
 UA="Mozilla/5.0 (compatible; Nepal-Flood-Monitor/6.0; +https://github.com/LaxmanNepal/Nepal-Flood-Monitor)"
 THRESHOLDS={"1h":60.0,"3h":80.0,"6h":100.0,"12h":120.0,"24h":140.0}
@@ -79,6 +79,8 @@ def bipad_rainfall():
         print(f"BIPAD API rainfall unavailable: {e}")
         raw=[]
     out=[]
+    if raw:
+        print("BIPAD rain sample:", json.dumps(raw[0], ensure_ascii=False)[:1800] if isinstance(raw[0],dict) else str(raw[0])[:1800])
     for item in raw:
         if not isinstance(item,dict): continue
         station=item.get("station") if isinstance(item.get("station"),dict) else {}
