@@ -21,6 +21,14 @@ def load_meta():
         return {clean(x.get("station_id")):x for x in items if isinstance(x,dict) and x.get("station_id")}
     except Exception:return {}
 
+def station_meta(meta, sid, name):
+    if sid and sid in meta:return meta[sid]
+    n=clean(name).lower()
+    for x in meta.values():
+        xn=clean(x.get("name")).lower()
+        if xn and (xn==n or xn in n or n in xn):return x
+    return {}
+
 def risk(status,water=None,warning=None,danger=None):
     # Thresholds are authoritative; "BELOW WARNING LEVEL" is not a warning.
     s=clean(status).lower()
@@ -70,7 +78,7 @@ def normalize(obj,meta,source):
         status=field(d,"status","river_status","riverStatus")
         if not valid_name(name) or (water is None and status is None):continue
         sid=clean(field(d,"station_id","stationId","station_index","stationIndex","series_id","seriesId","id"))
-        extra=meta.get(sid,{})
+        extra=station_meta(meta,sid,name)
         wn=number(field(d,"warning_level","warningLevel","warning")); dn=number(field(d,"danger_level","dangerLevel","danger")); wl=number(water)
         st=clean(status) or ("Observed" if wl is not None else "Offline")
         lat=number(field(d,"latitude","lat")); lon=number(field(d,"longitude","lon","lng"))
