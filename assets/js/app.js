@@ -92,6 +92,15 @@ function historyChart(s,windowHours=24){
   const last=new Date(points[points.length-1].t).toLocaleTimeString([],windowHours>48?{month:'short',day:'numeric'}:{hour:'2-digit',minute:'2-digit'});
   return '<div class="history-chart-wrap"><div class="history-chart-head"><div><b>Water-level history</b><span>'+points.length+' samples · '+first+' → '+last+'</span></div><div class="history-tabs"><button type="button" class="'+(windowHours===24?'active':'')+'" data-history-window="24">24h</button><button type="button" class="'+(windowHours===168?'active':'')+'" data-history-window="168">7d</button></div></div><svg class="history-chart" viewBox="0 0 640 220" role="img" aria-label="Water level history for '+esc(s.name)+'">'+grid+thresholds+'<polyline points="'+poly+'" class="history-line"/><circle cx="'+x(points.length-1)+'" cy="'+y(points[points.length-1].w)+'" r="4" class="history-dot"/><text x="38" y="211" class="history-axis">'+first+'</text><text x="618" y="211" text-anchor="end" class="history-axis">'+last+'</text></svg><div class="history-summary"><span>Low <b>'+label(min)+'</b></span><span>Latest <b>'+label(points[points.length-1].w)+'</b></span><span>High <b>'+label(max)+'</b></span></div></div>';
 }
+function bindHistoryTabs(s,box){
+  box.querySelectorAll('[data-history-window]').forEach(btn=>btn.addEventListener('click',()=>{
+    const holder=document.createElement('div');
+    holder.innerHTML=historyChart(s,Number(btn.dataset.historyWindow));
+    const current=box.querySelector('.history-chart-wrap')||box.querySelector('.history-empty');
+    if(current)current.replaceWith(holder.firstElementChild);
+    bindHistoryTabs(s,box);
+  }));
+}
 function openStationModal(s){
   const m=$('station-modal'), box=$('station-modal-content'); if(!m||!box)return;
   const d=stationDetail(s);
@@ -106,7 +115,7 @@ function openStationModal(s){
     '<div class="station-detail-note">History is collected by this dashboard from published snapshots. It begins when collection starts and does not reconstruct earlier observations.</div>'+
     '<div class="station-detail-actions"><button type="button" class="river-view-stations" data-focus-station>Focus on map</button>'+(s.source_url?'<a class="station-source-link" href="'+esc(s.source_url)+'" target="_blank" rel="noopener">Open DHM source</a>':'')+'</div>';
   m.hidden=false; document.body.classList.add('modal-open');
-  box.querySelectorAll('[data-history-window]').forEach(b=>b.addEventListener('click',()=>{box.querySelectorAll('[data-history-window]').forEach(x=>x.classList.remove('active'));b.classList.add('active');const chart=historyChart(s,Number(b.dataset.historyWindow));const wrap=box.querySelector('.history-chart-wrap')||box.querySelector('.history-empty');if(wrap){const holder=document.createElement('div');holder.innerHTML=chart;wrap.replaceWith(holder.firstElementChild);box.querySelectorAll('[data-history-window]').forEach(x=>x.addEventListener('click',()=>{const w=Number(x.dataset.historyWindow);const current=box.querySelector('.history-chart-wrap')||box.querySelector('.history-empty');if(current){const h=document.createElement('div');h.innerHTML=historyChart(s,w);current.replaceWith(h.firstElementChild);box.querySelectorAll('[data-history-window]').forEach(y=>y.addEventListener('click',arguments.callee))}}))}}));
+  bindHistoryTabs(s,box);
   box.querySelector('[data-focus-station]')?.addEventListener('click',()=>{closeStationModal();if(Number.isFinite(+s.latitude)&&Number.isFinite(+s.longitude)){map.setView([+s.latitude,+s.longitude],13);state.markers.get(state.data.stations.indexOf(s))?.openPopup()}});
 }
 function closeStationModal(){const m=$('station-modal');if(m){m.hidden=true;document.body.classList.remove('modal-open')}}
