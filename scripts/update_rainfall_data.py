@@ -10,7 +10,7 @@ from urllib.request import Request,urlopen
 ROOT=Path(__file__).resolve().parents[1]; DATA=ROOT/"data"
 OUT=DATA/"rainfall-data.json"; HEALTH=DATA/"rainfall-source-health.json"
 DHM_URL="https://dhm.gov.np/hydrology/rainfall-watch-map"
-BIPAD_URL="https://bipadportal.gov.np/api/v1/rain-trimed/?limit=1000"
+BIPAD_URL="https://bipadportal.gov.np/api/v1/rain-trimed/?limit=1000&ordering=-measuredOn"
 BIPAD_REALTIME_URL="https://bipadportal.gov.np/realtime/"
 UA="Mozilla/5.0 (compatible; Nepal-Flood-Monitor/6.0; +https://github.com/LaxmanNepal/Nepal-Flood-Monitor)"
 THRESHOLDS={"1h":60.0,"3h":80.0,"6h":100.0,"12h":120.0,"24h":140.0}
@@ -79,22 +79,26 @@ def bipad_rainfall():
         print(f"BIPAD API rainfall unavailable: {e}")
         raw=[]
     out=[]
-    if raw:
-        print("BIPAD rainfall sample keys:", list(raw[0].keys()) if isinstance(raw[0],dict) else type(raw[0]).__name__)
-        print("BIPAD rainfall sample:", json.dumps(raw[0], ensure_ascii=False)[:1800] if isinstance(raw[0],dict) else str(raw[0])[:1800])
     for item in raw:
         if not isinstance(item,dict): continue
         station=item.get("station") if isinstance(item.get("station"),dict) else {}
-        loc=item.get("station_location") if isinstance(item.get("station_location"),dict) else {}
-        sid=first_value(item,"station_id","station_no","station_number","id") or first_value(station,"id","station_id")
-        name=first_value(item,"station_name","name","title") or first_value(station,"name","title")
+        point=item.get("point") if isinstance(item.get("point"),dict) else {}
+        sid=first_value(item,"stationSeriesId","station_id","station_no","station_number") or first_value(station,"id","station_id") or item.get("id")
+        name=first_value(item,"title","station_name","name") or first_value(station,"name","title")
         if not name: continue
-        val=first_value(item,"rainfall","rain","value","accumulated_rainfall","rainfall_value")
-        lat=number(first_value(item,"latitude","lat")) or number(first_value(station,"latitude","lat")) or number(first_value(loc,"latitude","lat"))
-        lon=number(first_value(item,"longitude","lon","lng")) or number(first_value(station,"longitude","lon","lng")) or number(first_value(loc,"longitude","lon","lng"))
+        averages=item.get("averages") if isinstance(item.get("averages"),list) else []
+        rain={"1h":None,"3h":None,"6h":None,"12h":None,"24h":None}
+        for avg in averages:
+            if not isinstance(avg,dict): continue
+            interval=number(avg.get("interval")); value=number(avg.get("value"))
+            key={1:"1h",3:"3h",6:"6h",12:"12h",24:"24h"}.get(int(interval) if interval is not None else 0)
+            if key: rain[key]=value
+        coords=point.get("coordinates") if isinstance(point.get("coordinates"),list) else []
+        lon=number(coords[0]) if len(coords)>1 else None
+        lat=number(coords[1]) if len(coords)>1 else None
         if lat is not None and not (26<=lat<=31): lat=None
         if lon is not None and not (80<=lon<=89): lon=None
-        out.append({"station_id":str(sid or name),"name":str(name),"basin":str(first_value(item,"basin","basin_name") or first_value(station,"basin","basin_name") or ""), "district":str(first_value(item,"district","district_name") or first_value(station,"district","district_name") or ""), "rainfall":{"1h":number(val),"3h":None,"6h":None,"12h":None,"24h":None}, "status":status([((str(first_value(item,"status") or "")), "")]), "latitude":lat,"longitude":lon,"source":"BIPAD/DHM Rain Watch","source_url":BIPAD_REALTIME_URL,"source_period":"1h"} )
+        out.append({"station_id":str(sid or name),"name":str(name),"basin":str(first_value(item,"basin","basin_name") or first_value(station,"basin","basin_name") or ""), "district":str(first_value(item,"district","district_name") or first_value(station,"district","district_name") or ""), "rainfall":rain, "status":status([((str(first_value(item,"status") or "")), "")]), "latitude":lat,"longitude":lon,"source":"BIPAD/DHM Rain Watch","source_url":BIPAD_REALTIME_URL,"source_period":"1h","observed_at":str(item.get("measuredOn") or "")} )
     if len(out)>=20:
         return out
 
