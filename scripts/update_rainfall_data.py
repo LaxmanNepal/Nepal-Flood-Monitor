@@ -11,6 +11,7 @@ ROOT=Path(__file__).resolve().parents[1]; DATA=ROOT/"data"
 OUT=DATA/"rainfall-data.json"; HEALTH=DATA/"rainfall-source-health.json"
 DHM_URL="https://dhm.gov.np/hydrology/rainfall-watch-map"
 BIPAD_URL="https://bipadportal.gov.np/api/v1/rain-trimed/?limit=1000"
+BIPAD_REALTIME_URL="https://bipadportal.gov.np/realtime/"
 UA="Mozilla/5.0 (compatible; Nepal-Flood-Monitor/6.0; +https://github.com/LaxmanNepal/Nepal-Flood-Monitor)"
 THRESHOLDS={"1h":60.0,"3h":80.0,"6h":100.0,"12h":120.0,"24h":140.0}
 
@@ -68,8 +69,14 @@ def first_value(d,*keys):
     return None
 
 def bipad_rainfall():
-    obj=json_fetch(BIPAD_URL,45)
-    raw=records_from_json(obj)
+    # Prefer the public API, but BIPAD may return a non-JSON gateway page.
+    # The realtime page is also a public BIPAD/DHM presentation of the same feed.
+    try:
+        obj=json_fetch(BIPAD_URL,45)
+        raw=records_from_json(obj)
+    except Exception as e:
+        print(f"BIPAD API rainfall unavailable: {e}")
+        raw=[]
     out=[]
     for item in raw:
         if not isinstance(item,dict): continue
@@ -79,12 +86,36 @@ def bipad_rainfall():
         name=first_value(item,"station_name","name","title") or first_value(station,"name","title")
         if not name: continue
         val=first_value(item,"rainfall","rain","value","accumulated_rainfall","rainfall_value")
-        val=number(val)
         lat=number(first_value(item,"latitude","lat")) or number(first_value(station,"latitude","lat")) or number(first_value(loc,"latitude","lat"))
         lon=number(first_value(item,"longitude","lon","lng")) or number(first_value(station,"longitude","lon","lng")) or number(first_value(loc,"longitude","lon","lng"))
         if lat is not None and not (26<=lat<=31): lat=None
         if lon is not None and not (80<=lon<=89): lon=None
-        out.append({"station_id":str(sid or name),"name":str(name),"basin":str(first_value(item,"basin","basin_name") or first_value(station,"basin","basin_name") or ""), "district":str(first_value(item,"district","district_name") or first_value(station,"district","district_name") or ""), "rainfall":{"1h":val,"3h":None,"6h":None,"12h":None,"24h":None}, "status":status([((str(first_value(item,"status") or "")), "")]), "latitude":lat,"longitude":lon,"source":"BIPAD/DHM Rain Watch","source_url":"https://bipadportal.gov.np/realtime/","source_period":"1h"} )
+        out.append({"station_id":str(sid or name),"name":str(name),"basin":str(first_value(item,"basin","basin_name") or first_value(station,"basin","basin_name") or ""), "district":str(first_value(item,"district","district_name") or first_value(station,"district","district_name") or ""), "rainfall":{"1h":number(val),"3h":None,"6h":None,"12h":None,"24h":None}, "status":status([((str(first_value(item,"status") or "")), "")]), "latitude":lat,"longitude":lon,"source":"BIPAD/DHM Rain Watch","source_url":BIPAD_REALTIME_URL,"source_period":"1h"} )
+    if len(out)>=20:
+        return out
+
+    # Server-rendered fallback used when the API endpoint is behind a JSON-incompatible gateway.
+    try:
+        html=fetch(BIPAD_REALTIME_URL,45)
+        parsed=[]
+        for rows in tables(html):
+            for cells in rows:
+                vals=[clean(x[0]) for x in cells]
+                if len(vals)<6: continue
+                low=" ".join(v.lower() for v in vals)
+                if "station name" in low or "rainfall" in low and "status" in low: continue
+                # BIPAD realtime columns: basin, station, date, time, rainfall, status.
+                basin,name,date,time_,rain,status_text=vals[-6:]
+                value=number(rain)
+                if not name or value is None and rain not in ("-","—"): continue
+                if not name or name.lower() in {"station name","station"}: continue
+                parsed.append({"station_id":name,"name":name,"basin":basin if basin!="-" else "","district":"","rainfall":{"1h":value,"3h":None,"6h":None,"12h":None,"24h":None},"status":status([(status_text,"")]),"latitude":None,"longitude":None,"source":"BIPAD/DHM Rain Watch","source_url":BIPAD_REALTIME_URL,"source_period":"1h","observed_at":f"{date}T{time_}"} )
+        # Keep the latest row for each station name when the page contains multiple samples.
+        latest={}
+        for row in parsed: latest[row["name"]]=row
+        out=list(latest.values())
+    except Exception as e:
+        print(f"BIPAD realtime rainfall fallback failed: {e}")
     return out
 
 def station_url(href,number_id):
