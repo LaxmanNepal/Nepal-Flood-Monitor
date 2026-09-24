@@ -22,11 +22,14 @@ def load_meta():
     except Exception:return {}
 
 def risk(status,water=None,warning=None,danger=None):
+    # Thresholds are authoritative; "BELOW WARNING LEVEL" is not a warning.
     s=clean(status).lower()
-    if "danger" in s or (water is not None and danger is not None and water>=danger): return "critical"
-    if "warning" in s or (water is not None and warning is not None and water>=warning): return "warning"
-    if "rising" in s:return "watch"
     if "offline" in s or "unavailable" in s:return "offline"
+    if water is not None and danger is not None and water>=danger:return "critical"
+    if water is not None and warning is not None and water>=warning:return "warning"
+    if "above danger" in s:return "critical"
+    if "above warning" in s:return "warning"
+    if "rising" in s:return "watch"
     return "normal"
 
 def fetch_json(url):
