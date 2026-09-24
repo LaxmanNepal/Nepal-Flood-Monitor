@@ -87,5 +87,7 @@ jobs:
             echo "No data changes."
           else
             git commit -m "chore(data): update river status snapshot"
+            git fetch origin main
+            git rebase origin/main
             git push
           fi
